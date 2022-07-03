@@ -35,14 +35,12 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests().
                 antMatchers("/login", "/logout","/registration")
-                .permitAll()
-                .and()
+                .permitAll().antMatchers("/login_success").hasRole("USER")
+                .and().exceptionHandling().accessDeniedPage("/access_denied.html").and()
                 .formLogin()
-                .usernameParameter("username")
-                .defaultSuccessUrl("/login_success")
-                .permitAll()
+                .usernameParameter("username").defaultSuccessUrl("/")
                 .and()
-                .logout().logoutSuccessUrl("/").permitAll();
+                .logout().logoutSuccessUrl("/");
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -3,20 +3,42 @@ package com.tradinghub.projectus2.model;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_user")
 public class User implements UserDetails {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "username")
     private String username;
     private String email;
+
+    private String password;
+    @Transient
+    private String passwordConfirm;
+    private boolean enabled=true;
+    @Column(name = "account_locked")
+    private boolean accountNonLocked=true;
+    @Column(name = "credentials_expired")
+    private boolean credentialsNonExpired=true;
+    @Column(name = "account_expired")
+    private boolean accountNonExpired=true;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable(name = "role_user", joinColumns = {
+            @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
+            @JoinColumn(name = "role_id", referencedColumnName = "id") })
+    private List<Role> roles;
 
     public String getEmail() {
         return email;
@@ -25,14 +47,6 @@ public class User implements UserDetails {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    private String password;
-    @Transient
-    private String passwordConfirm;
-    @ManyToMany
-    @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<Role> roles;
-
     public Long getId() {
         return id;
     }
@@ -57,17 +71,24 @@ public class User implements UserDetails {
         this.passwordConfirm = passwordConfirm;
     }
 
-    public Set<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-      return getRoles();
+        Set<GrantedAuthority> authorities = new HashSet<>();
+        for (Role r: roles) {
+            authorities.add(new SimpleGrantedAuthority(r.getName()));
+            for (Permission p: r.getPermissions()) {
+                authorities.add(new SimpleGrantedAuthority(p.getName()));
+            }
+        }
+      return authorities;
     }
 
     @Override
@@ -82,21 +103,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return accountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return accountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return credentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

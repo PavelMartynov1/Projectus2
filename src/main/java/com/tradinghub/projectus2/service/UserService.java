@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -26,8 +28,9 @@ public class UserService {
             logger.warn("UserDB==null");
             return false;
         }
-
-        user.setRoles(Collections.singleton(new Role("USER")));
+        List<Role> userRole = new ArrayList<>();
+        userRole.add(new Role("ROLE_USER"));
+        user.setRoles(userRole);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepo.save(user);
         logger.info("Saved new User "+user.getUsername());

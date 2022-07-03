@@ -35,8 +35,12 @@ public class UserController {
         return "register_success";
     }
     @GetMapping("/login_success")
-    public String listUsers() {
+    public String loginSuccess() {
         return "login_success.html";
+    }
+    @GetMapping("/access_denied")
+    public String accessDenied() {
+        return "access_denied.html";
     }
     @RequestMapping(value = "/")
     public String getIndexPage(){

@@ -4,29 +4,32 @@ import org.hibernate.annotations.CascadeType;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "t_role")
-public class Role implements GrantedAuthority {
+public class Role  {
+
+    private static final long serialVersionUID = 1L;
+
     public Role(String name) {
         this.name = name;
     }
-    public Role() {
 
-    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    @Cascade({CascadeType.SAVE_UPDATE,  CascadeType.MERGE, CascadeType.PERSIST})
-    private Set<User> users;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "permission_role", joinColumns = {
+            @JoinColumn(name = "role_id", referencedColumnName = "id") }, inverseJoinColumns = {
+            @JoinColumn(name = "permission_id", referencedColumnName = "id") })
+    private List<Permission> permissions;
 
-    @Override
-    public String getAuthority() {
-        return getName();
+    public Role() {
+
     }
 
     public Long getId() {
@@ -45,11 +48,11 @@ public class Role implements GrantedAuthority {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public List<Permission> getPermissions() {
+        return permissions;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setPermissions(List<Permission> permissions) {
+        this.permissions = permissions;
     }
 }

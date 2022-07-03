@@ -25,15 +25,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             //Добавить исключение
             logger.warn("User == null");
         }
-        boolean enabled = true;
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
+
         logger.info("Найден пользователь при входе "+user.getUsername());
-        logger.info("password "+user.getPassword());
+        logger.info("Role "+user.getAuthorities().toString());
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(),
-                user.getPassword(), user.isEnabled(), accountNonExpired, credentialsNonExpired, accountNonLocked,
+                user.getPassword(), user.isEnabled(),
+                user.isAccountNonExpired(),
+                user.isCredentialsNonExpired(),
+                user.isAccountNonLocked(),
                 user.getAuthorities());
     }
 }
