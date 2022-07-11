@@ -3,6 +3,7 @@ package com.tradinghub.projectus2.controller;
 import com.tradinghub.projectus2.model.User;
 import com.tradinghub.projectus2.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +34,16 @@ public class UserController {
                                   BindingResult bindingResult, Model model ){
         userService.save(userForm);
         return "register_success";
+    }
+    @GetMapping("/verify")
+    public String verifyUser(@Param("code") String code) {
+        if (userService.verify(code)) {
+            logger.info("User verified");
+            return "verify_success";
+        } else {
+            logger.info("verify_fail");
+            return "verify_fail";
+        }
     }
     @GetMapping("/login_success")
     public String loginSuccess() {

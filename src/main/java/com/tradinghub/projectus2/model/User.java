@@ -26,6 +26,17 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String passwordConfirm;
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
+    @Column(name = "verification_code", length = 64)
+    private String verifyCode;
     private boolean enabled=true;
     @Column(name = "account_locked")
     private boolean accountNonLocked=true;
@@ -104,6 +115,10 @@ public class User implements UserDetails {
     @Override
     public boolean isAccountNonExpired() {
         return accountNonExpired;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override
