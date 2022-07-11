@@ -86,7 +86,7 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getUsername());
-        String verifyURL ="/verify?code=" + user.getVerifyCode();
+        String verifyURL ="https://tradinghub-01.herokuapp.com/verify?code=" + user.getVerifyCode();
 
         content = content.replace("[[URL]]", verifyURL);
 
