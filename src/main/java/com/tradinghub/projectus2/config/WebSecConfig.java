@@ -36,9 +36,10 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().
                 antMatchers("/login", "/logout","/registration")
                 .permitAll().antMatchers("/login_success").hasRole("USER")
+                .antMatchers("/users").hasRole("ADMIN")
                 .and().exceptionHandling().accessDeniedPage("/access_denied.html").and()
                 .formLogin()
-                .usernameParameter("username").defaultSuccessUrl("/")
+                .usernameParameter("username").defaultSuccessUrl("/login_success")
                 .and()
                 .logout().logoutSuccessUrl("/");
     }

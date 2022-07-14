@@ -1,6 +1,5 @@
 package com.tradinghub.projectus2.service;
 
-import com.tradinghub.projectus2.controller.UserController;
 import com.tradinghub.projectus2.model.Role;
 import com.tradinghub.projectus2.model.User;
 import com.tradinghub.projectus2.repository.UserRepository;
@@ -13,6 +12,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
@@ -28,12 +28,17 @@ public class UserService {
     UserRepository userRepo;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public List<User> getAllUsers() {
+        return userRepo.findAll();
+    }
+
     public boolean verify(String verifyCode) {
         User user = userRepo.findByCode(verifyCode);
-        logger.info("starting process of verifying "+verifyCode);
-        logger.info("In DB user code "+user.getVerifyCode());
+        logger.info("starting process of verifying " + verifyCode);
+        logger.info("In DB user code " + user.getVerifyCode());
 
-        if (user == null ) {
+        if (user == null) {
             return false;
         } else {
             user.setVerifyCode(null);
@@ -43,9 +48,10 @@ public class UserService {
         }
 
     }
-    public boolean save(User user){
-        User userDB=userRepo.findByUsername(user.getUsername());
-        if(userDB!=null){
+
+    public boolean save(User user) {
+        User userDB = userRepo.findByUsername(user.getUsername());
+        if (userDB != null) {
             logger.warn("UserDB==null");
             return false;
         }
@@ -53,9 +59,9 @@ public class UserService {
         userRole.add(new Role("ROLE_USER"));
         user.setRoles(userRole);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        String randomString= RandomString.make(64);
+        String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
-        logger.info("Saved new User "+user.getUsername());
+        logger.info("Saved new User " + user.getUsername());
         userRepo.save(user);
         try {
             sendVerifyCode(user);
@@ -66,8 +72,8 @@ public class UserService {
         }
         return true;
     }
-    public void sendVerifyCode(User user) throws UnsupportedEncodingException, MessagingException
-    {
+
+    public void sendVerifyCode(User user) throws UnsupportedEncodingException, MessagingException {
         String toAddress = user.getEmail();
         String fromAddress = "martynovpasha0000@gmail.com";
         String senderName = "Your company name";
@@ -86,7 +92,7 @@ public class UserService {
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getUsername());
-        String verifyURL ="https://tradinghub-01.herokuapp.com/verify?code=" + user.getVerifyCode();
+        String verifyURL = "https://tradinghub-01.herokuapp.com/verify?code=" + user.getVerifyCode();
 
         content = content.replace("[[URL]]", verifyURL);
 

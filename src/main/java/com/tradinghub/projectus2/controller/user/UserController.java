@@ -1,4 +1,4 @@
-package com.tradinghub.projectus2.controller;
+package com.tradinghub.projectus2.controller.user;
 
 import com.tradinghub.projectus2.model.User;
 import com.tradinghub.projectus2.service.UserService;
@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -46,8 +47,9 @@ public class UserController {
         }
     }
     @GetMapping("/login_success")
-    public String loginSuccess() {
-        return "login_success.html";
+    public String loginSuccess(Model model,Principal principal) {
+        model.addAttribute("userName",principal.getName());
+        return "user_cabinet.html";
     }
     @GetMapping("/access_denied")
     public String accessDenied() {

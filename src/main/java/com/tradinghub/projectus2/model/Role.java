@@ -9,28 +9,24 @@ import java.util.Set;
 
 @Entity
 public class Role  {
-
-    private static final long serialVersionUID = 1L;
-
+    public Role() {
+    }
     public Role(String name) {
         this.name = name;
     }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
-
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "permission_role", joinColumns = {
             @JoinColumn(name = "role_id", referencedColumnName = "id") }, inverseJoinColumns = {
             @JoinColumn(name = "permission_id", referencedColumnName = "id") })
     private List<Permission> permissions;
+    @Transient
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
 
-    public Role() {
-
-    }
 
     public Long getId() {
         return id;
