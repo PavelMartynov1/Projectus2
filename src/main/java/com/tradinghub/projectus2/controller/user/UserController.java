@@ -2,7 +2,6 @@ package com.tradinghub.projectus2.controller.user;
 
 import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
-import com.tradinghub.projectus2.model.Item;
 import com.tradinghub.projectus2.model.ItemDetails.ItemDetails;
 import com.tradinghub.projectus2.model.User;
 import com.tradinghub.projectus2.model.UserInfo;
@@ -25,7 +24,6 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @Controller
-@RequestMapping(value="/user")
 public class UserController {
     Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
@@ -76,13 +74,14 @@ public class UserController {
     public String registerNewUser(@ModelAttribute("user")
                                   @Valid User userForm,
                                   BindingResult result,Model model) {
+        logger.info("loh");
         try {
             userService.save(userForm);
         } catch (UserAlreadyExistException e){
             model.addAttribute("Username_is_taken",e);
-            return "/registration";
+            return "redirect:/login";
         }
-            return "register_success";
+            return "redirect:/login";
     }
 
     @GetMapping("/verify")

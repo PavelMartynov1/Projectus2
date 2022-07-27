@@ -40,7 +40,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users").hasRole("ADMIN")
                 .antMatchers( "/js/**", "/css/**")
                 .permitAll()
-                .anyRequest().authenticated()
+//                .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedPage("/access_denied.html").and()
                 .formLogin()
                 .usernameParameter("username").defaultSuccessUrl("/profile")

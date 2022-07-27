@@ -90,7 +90,7 @@
         }
     </script>
     <form class="w-25 mx-auto mt-5" name="RegForm" method="POST" enctype="utf8" th:action="@{/registration}"
-          th:object="${user}" onsubmit="return validate();">
+          th:object="${user}">
 
         <div class="mb-3">
             <p th:text="${Username_is_taken.getMessage()}" th:if="${Username_is_taken ne null}"></p>
