@@ -152,9 +152,9 @@ public class UserController {
     }
 
 
-//    @RequestMapping(value = "/",method=RequestMethod.GET)
-//    public String getIndexPage() {
-//        return "redirect:/home";
-//    }
+    @RequestMapping(value = "/",method=RequestMethod.GET)
+    public String getIndexPage() {
+       return "redirect:/home";
+    }
 
 }
