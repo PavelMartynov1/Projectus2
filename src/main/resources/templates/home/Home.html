@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html style="font-size: 16px;" lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Product 1 Title, Product 1 Title, Product 1 Title, Product 1 Title">
+    <meta name="description" content="">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/Home.css}" media="screen">
+    <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
+    <script class="u-script" type="text/javascript" th:src="@{/js/nicepage.js}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": ""
+    }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="Home">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="ru">
+<header class="u-clearfix u-header u-header" id="sec-7d95">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
+            <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
+                <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                   href="#">
+                    <svg class="u-svg-link" viewBox="0 0 24 24">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                    </svg>
+                    <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                        <g>
+                            <rect y="1" width="16" height="2"></rect>
+                            <rect y="7" width="16" height="2"></rect>
+                            <rect y="13" width="16" height="2"></rect>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-unstyled u-nav-1">
+                    <li class="u-nav-item"><a
+                            class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                            href="Home.html" style="padding: 10px 26px;">Home</a>
+                    </li>
+                    <li class="u-nav-item"><a
+                            class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                            href="User-Cabinet.html" style="padding: 10px 26px;">User Cabinet</a>
+                        <div class="u-nav-popup">
+                            <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
+                                                          href="Sell-account.html">Sell Account</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="u-custom-menu u-nav-container-collapse">
+                <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                    <div class="u-inner-container-layout u-sidenav-overflow">
+                        <div class="u-menu-close"></div>
+                        <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
+                            </li>
+                            <li class="u-nav-item"><a class="u-button-style u-nav-link" href="User-Cabinet.html">User
+                                Cabinet</a>
+                                <div class="u-nav-popup">
+                                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                  href="Sell-account.html">Sell Account</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+            </div>
+        </nav>
+        <p class="u-text u-text-default u-text-1">Trading Hub</p>
+    </div>
+</header>
+<section class="u-clearfix u-section-1" id="sec-3071">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-form u-form-1">
+            <form th:action="@{/home}" method="GET" class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form" source="custom" name="form" style="padding: 10px;" redirect="true">
+                <div class="u-form-group u-form-select u-form-group-1">
+                    <label for="select-01fd" class="u-label">Категория</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-01fd" name="category" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option disabled selected value>Choose</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Instagram">Instagram</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                    </div>
+                </div>
+                <div class="u-form-group u-form-select u-form-group-2">
+                    <label for="select-5907" class="u-label">Цена</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-5907" name="price" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option disabled selected value>Choose</option>
+                            <option value="ASC">ASC</option>
+                            <option value="DSC">DSC</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                    </div>
+                </div>
+                <div class="u-form-group u-form-select u-form-group-3">
+                    <label for="select-2f20" class="u-label">Количество подпрыщиков</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-2f20" name="followers" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option disabled selected value>Choose</option>
+                            <option value="ASC">ASC</option>
+                            <option value="DSC">DSC</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                    </div>
+                </div>
+                <div class="u-form-group u-form-select u-form-group-4">
+                    <label for="select-c633" class="u-label">Товаров на странице</label>
+                    <div class="u-form-select-wrapper">
+                        <select id="select-c633" name="pageSize" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+                            <option value="2">2</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                        </select>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+                    </div>
+                </div>
+                <div class="u-align-center u-form-group u-form-submit">
+                    <a href="#" class="u-active-palette-1-dark-1 u-border-none u-btn u-btn-submit u-button-style u-hover-palette-1-light-2">Отправить</a>
+                    <input type="submit" value="submit" class="u-form-control-hidden">
+                </div>
+
+            </form>
+        </div><!--product--><!--product_options_json--><!--{"source":""}--><!--/product_options_json-->
+        <!--product_item-->
+        <div th:each="item : ${items}">
+        <div th:if="${item[0]!=null }" class="u-container-style u-product u-white u-product-1">
+            <div class="u-container-layout u-container-layout-1"><!--product_title-->
+                <h2 class="u-product-control u-text u-text-1">
+                    <a th:text="${item[0].header}" class="u-product-title-link" href="#"><!--product_title_content-->
+                        <!--/product_title_content--></a>
+                </h2><!--/product_title--><!--product_image-->
+                <img alt="" class="u-image u-image-default u-product-control u-image-1" data-image-width="2000"
+                     data-image-height="1333" src="images/4.svg"><!--/product_image-->
+                <h5 class="u-text u-text-2">Цена</h5>
+                <p th:text="${item[0].price}" class="u-text u-text-3"></p><!--product_content-->
+                <div class="u-product-control u-product-desc u-text u-text-4"><!--product_content_content-->
+                    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                        suscipit ultrices.</p><!--/product_content_content-->
+                </div><!--/product_content--><!--product_button--><!--options_json-->
+                <!--{"clickType":"add-to-cart","content":"КУПИТЬ"}--><!--/options_json-->
+                <a href="#" class="u-black u-btn u-button-style u-product-control u-btn-2"><!--product_button_content-->
+                    КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
+            </div>
+        </div><!--/product_item--><!--/product--><!--product--><!--product_options_json--><!--{"source":""}-->
+        <!--/product_options_json--><!--product_item-->
+        <div th:if="${item[1]!=null }" class="u-container-style u-product u-white u-product-2">
+            <div class="u-container-layout u-container-layout-2"><!--product_image-->
+                <img alt="" class="u-image u-image-default u-product-control u-image-2" data-image-width="2000"
+                     data-image-height="1333" src="images/4.svg"><!--/product_image--><!--product_title-->
+                <h2 class="u-product-control u-text u-text-5">
+                    <a th:text="${item[1].header}" class="u-product-title-link" href="#"><!--product_title_content-->
+                        <!--/product_title_content--></a>
+                </h2><!--/product_title-->
+                <h5 class="u-text u-text-6">Цена</h5>
+                <p th:text="${item[1].price}" class="u-text u-text-7"></p><!--product_content-->
+                <div class="u-product-control u-product-desc u-text u-text-8"><!--product_content_content-->
+                    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                        suscipit ultrices.</p><!--/product_content_content-->
+                </div><!--/product_content--><!--product_button--><!--options_json-->
+                <!--{"clickType":"add-to-cart","content":"КУПИТЬ"}--><!--/options_json-->
+                <a href="#" class="u-black u-btn u-button-style u-product-control u-btn-3"><!--product_button_content-->
+                    КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
+            </div>
+        </div><!--/product_item--><!--/product--><!--product--><!--product_options_json--><!--{"source":""}-->
+        <!--/product_options_json--><!--product_item-->
+        <div th:if="${item[2]!=null }" class="u-container-style u-product u-white u-product-3">
+            <div class="u-container-layout u-container-layout-3"><!--product_image-->
+                <img alt="" class="u-image u-image-default u-product-control u-image-3" data-image-width="2000"
+                     data-image-height="1333" src="images/4.svg"><!--/product_image--><!--product_title-->
+                <h2 class="u-product-control u-text u-text-9">
+                    <a th:text="${item[2].header}" class="u-product-title-link" href="#"><!--product_title_content-->
+                        <!--/product_title_content--></a>
+                </h2><!--/product_title-->
+                <h5 class="u-text u-text-10">Цена</h5>
+                <p th:text="${item[2].price}" class="u-text u-text-11"></p><!--product_content-->
+                <div class="u-product-control u-product-desc u-text u-text-12"><!--product_content_content-->
+                    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                        suscipit ultrices.</p><!--/product_content_content-->
+                </div><!--/product_content--><!--product_button--><!--options_json-->
+                <!--{"clickType":"add-to-cart","content":"КУПИТЬ"}--><!--/options_json-->
+                <a href="#" class="u-black u-btn u-button-style u-product-control u-btn-4"><!--product_button_content-->
+                    КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
+            </div>
+        </div><!--/product_item--><!--/product--><!--product--><!--product_options_json--><!--{"source":""}-->
+        <!--/product_options_json--><!--product_item-->
+        <div  th:if="${item[3]!=null }" class="u-container-style u-product u-white u-product-4">
+            <div class="u-container-layout u-container-layout-4"><!--product_image-->
+                <img alt="" class="u-image u-image-default u-product-control u-image-4" data-image-width="2000"
+                     data-image-height="1333" src="images/4.svg"><!--/product_image--><!--product_title-->
+                <h2 th:text="${item[3].header}" class="u-product-control u-text u-text-13">
+                    <a class="u-product-title-link" href="#"><!--product_title_content-->
+                        <!--/product_title_content--></a>
+                </h2><!--/product_title-->
+                <h5 class="u-text u-text-14">Цена</h5>
+                <p th:text="${item[3].price}" class="u-text u-text-15"></p><!--product_content-->
+                <div class="u-product-control u-product-desc u-text u-text-16"><!--product_content_content-->
+                    <p>Sample text. Lorem ipsum dolor sit amet, consectetur adipiscing elit nullam nunc justo sagittis
+                        suscipit ultrices.</p><!--/product_content_content-->
+                </div><!--/product_content--><!--product_button--><!--options_json-->
+                <!--{"clickType":"add-to-cart","content":"КУПИТЬ"}--><!--/options_json-->
+                <a href="#" class="u-black u-btn u-button-style u-product-control u-btn-5"><!--product_button_content-->
+                    КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
+            </div>
+        </div>
+        </div><!--/product_item--><!--/product-->
+        <div class="u-list u-list-1">
+            <div class="u-repeater u-repeater-1">
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-container-layout-5">
+                        <a th:if="${current_page!=1}" th:href="@{'/home?pageNo=1&pageSize=' +${pageSize}}"
+                           class="u-active-none u-border-2 u-border-palette-1-base u-btn
+                            u-button-style u-custom-item u-hover-none u-none u-btn-6">Начало</a>
+                        <span th:unless="${current_page!=1}" class="u-active-none u-border-2 u-border-palette-1-base u-btn
+                            u-button-style u-custom-item u-hover-none u-none u-btn-6"
+                              >Начало</span>
+                    </div>
+                </div>
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-container-layout-6">
+                        <a th:if="${current_page!=1}" th:href="@{'/home?pageNo='
+                        + ${current_page-1} +
+    '&pageSize=' +${pageSize}}"
+                           class="u-active-none u-border-2 u-border-palette
+                           -1-base u-btn u-button-style u-custom-item u-hov
+                           er-none u-none u-btn-7">Назад</a>
+                        <span th:unless="${current_page!=1}" class="u-active-none u-border-2 u-border-palette
+                           -1-base u-btn u-button-style u-custom-item u-hov
+                           er-none u-none u-btn-7" >Назад</span>
+                    </div>
+                </div>
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-container-layout-7">
+                        <a th:if="${current_page < totalPages}" th:href="@{'/home?pageNo=' + ${current_page + 1}+
+    '&pageSize=' +${pageSize}}"
+                           class="u-active-none u-border-2 u-border-palette-1-base
+                            u-btn u-button-style u-custom-item u-hover-none u-none
+                             u-btn-8">Вперед</a>
+                        <span th:unless ="${current_page < totalPages}"  class="u-active-none u-border-2 u-border-palette-1-base
+                            u-btn u-button-style u-custom-item u-hover-none u-none
+                             u-btn-8">Вперед</span>
+                    </div>
+                </div>
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-container-layout-8">
+                        <a th:if="${current_page < totalPages}" th:href="@{'/home?pageNo=' + ${totalPages}+
+    '&pageSize=' +${pageSize}}"
+                           class="u-active-none u-border-2 u-border-palette-1-base
+                            u-btn u-button-style u-custom-item u-hover-none u-none
+                             u-btn-9">Вконец</a>
+                        <span th:unless="${current_page < totalPages}" class="u-active-none u-border-2 u-border-palette-1-base
+                            u-btn u-button-style u-custom-item u-hover-none u-none
+                             u-btn-9" >Вконец</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-grey-10 u-section-2" id="sec-3537">
+    <div class="u-clearfix u-sheet u-valign-middle-md u-valign-middle-sm u-valign-middle-xs u-sheet-1"></div>
+</section>
+
+
+<footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-fe06">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Пример текста. Кликните, чтобы выбрать элемент
+            "Текст".</p>
+    </div>
+</footer>
+<section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+    </a>
+    <p class="u-text">
+        <span>created with</span>
+    </p>
+    <a class="u-link" href="" target="_blank">
+        <span>Website Builder Software</span>
+    </a>.
+</section>
+
+</body>
+</html>

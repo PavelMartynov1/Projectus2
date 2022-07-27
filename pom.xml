@@ -14,7 +14,7 @@
     <name>Projectus2</name>
     <description>Projectus2</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -57,6 +57,18 @@
             <artifactId>spring-boot-starter-mail</artifactId>
             <version>2.5.6</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.instagram4j</groupId>
+            <artifactId>instagram4j</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.restfb/restfb -->
+        <dependency>
+            <groupId>com.restfb</groupId>
+            <artifactId>restfb</artifactId>
+            <version>2022.7.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>

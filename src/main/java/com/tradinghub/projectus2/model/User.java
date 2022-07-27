@@ -2,10 +2,11 @@ package com.tradinghub.projectus2.model;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
@@ -14,7 +15,6 @@ import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -44,12 +44,24 @@ public class User implements UserDetails {
     private boolean credentialsNonExpired=true;
     @Column(name = "account_expired")
     private boolean accountNonExpired=true;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "role_user", joinColumns = {
             @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
             @JoinColumn(name = "role_id", referencedColumnName = "id") })
     private List<Role> roles;
+
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    @JoinColumn(name = "userinfo_id")
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public String getEmail() {
         return email;

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile details</title>
+</head>
+<body>
+<form method="post" th:action="@{/profile/user_info}" th:object="${userInfo}" >
+    <label for="firstName">FirstName</label>
+    <input id="firstName" type="text" th:field="*{firstName}">
+    <br>
+    <label for="lastName">Last name</label>
+    <input id="lastName" type="text" th:field="*{lastName}">
+    <br>
+    <label for="skype">SKYPE</label>
+    <input id="skype" type="text" th:field="*{skype}">
+    <br>
+    <label for="vk">VK</label>
+    <input id="vk" type="text" th:field="*{vk}">
+    <br>
+    <label for="fb">FB</label>
+    <input  id="fb" type="text" th:field="*{fb}">
+    <br>
+    <label for="tg">TG</label>
+    <input id="tg" type="text" th:field="*{tg}">
+    <br>
+    <label for="number">Number</label>
+    <input id="number" type="text" th:field="*{number}">
+    <br>
+    <button type="submit" >Submit</button>
+</form>
+</body>
+</html>

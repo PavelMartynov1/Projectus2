@@ -1,7 +1,10 @@
 package com.tradinghub.projectus2.service;
 
+import com.tradinghub.projectus2.errorExeptions.PasswordException;
+import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.Role;
 import com.tradinghub.projectus2.model.User;
+import com.tradinghub.projectus2.model.UserInfo;
 import com.tradinghub.projectus2.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
@@ -32,7 +35,9 @@ public class UserService {
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
-
+    public User findUserByUsername(String username){
+        return userRepo.findByUsername(username);
+    }
     public boolean verify(String verifyCode) {
         User user = userRepo.findByCode(verifyCode);
         logger.info("starting process of verifying " + verifyCode);
@@ -48,12 +53,37 @@ public class UserService {
         }
 
     }
+    public void changeUserPassword(String username,String password,String newPassword){
+            User user=userRepo.findByUsername(username);
+            user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+            userRepo.save(user);
 
+    }
+    public void changeUserEmail(String username,String newEmail){
+        User user=findUserByUsername(username);
+        user.setEmail(newEmail);
+        try {
+            sendVerifyCode(user);
+            userRepo.save(user);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean checkValidPassword(String password,User user){
+        String encodedPassword=bCryptPasswordEncoder.encode(password);
+        logger.info(encodedPassword);
+        logger.info(user.getPassword());
+        return encodedPassword.equals(user.getPassword());
+    }
+    public void setUserInfo(User user){
+        userRepo.save(user);
+    }
     public boolean save(User user) {
         User userDB = userRepo.findByUsername(user.getUsername());
         if (userDB != null) {
-            logger.warn("UserDB==null");
-            return false;
+            throw new UserAlreadyExistException("Username is already taken");
         }
         List<Role> userRole = new ArrayList<>();
         userRole.add(new Role("ROLE_USER"));
@@ -63,6 +93,7 @@ public class UserService {
         user.setVerifyCode(randomString);
         logger.info("Saved new User " + user.getUsername());
         userRepo.save(user);
+
         try {
             sendVerifyCode(user);
         } catch (UnsupportedEncodingException e) {
@@ -73,31 +104,27 @@ public class UserService {
         return true;
     }
 
-    public void sendVerifyCode(User user) throws UnsupportedEncodingException, MessagingException {
+    public void sendVerifyCode(User user) throws MessagingException, UnsupportedEncodingException {
         String toAddress = user.getEmail();
         String fromAddress = "martynovpasha0000@gmail.com";
-        String senderName = "Your company name";
+        String senderName = "TradingHub";
         String subject = "Please verify your registration";
         String content = "Dear [[name]],<br>"
                 + "Please click the link below to verify your registration:<br>"
                 + "<h3><a href=\"[[URL]]\" target=\"_self\">VERIFY</a></h3>"
                 + "Thank you,<br>"
-                + "Your company name.";
+                + senderName;
 
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message);
-
-        helper.setFrom(fromAddress, senderName);
+            helper.setFrom(fromAddress, senderName);
         helper.setTo(toAddress);
         helper.setSubject(subject);
 
         content = content.replace("[[name]]", user.getUsername());
         String verifyURL = "https://tradinghub-01.herokuapp.com/verify?code=" + user.getVerifyCode();
-
         content = content.replace("[[URL]]", verifyURL);
-
         helper.setText(content, true);
-
         mailSender.send(message);
     }
 }

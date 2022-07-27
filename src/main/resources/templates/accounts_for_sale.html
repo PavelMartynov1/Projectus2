@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/accounts_for_sale}"  name="sortingForm" id="sortingForm" method="GET">
+    <table>
+        <caption>Sort accounts</caption>
+        <tr>
+            <label for="pageSize">Items on page</label>
+            <select form="sortingForm" id="pageSize" name="pageSize" >
+                <option disabled selected value>Items on page</option>
+                <option value="2">2</option>
+                <option value="5">5</option>
+            </select>
+            <label for="price">Sort by price</label>
+            <select  form="sortingForm" id="price"  name="price">
+                <option disabled selected value>Sort by price</option>
+                <option value="ASC">ASC</option>
+                <option value="DSC">DCS</option>
+            </select>
+            <label for="followers">Sort by followers count</label>
+            <select form="sortingForm" id="followers" name="followers">
+                <option disabled selected value>Sort by followers</option>
+                <option value="ASC">ASC</option>
+                <option value="DSC">DCS</option>
+            </select>
+            <th><button type="submit">Submit</button></th>
+        </tr>
+    </table>
+</form>
+<table border="1" class="table table-striped table-responsive-md">
+    <thead>
+    <tr>
+        <th>Header</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Price</th>
+        <th>Followers</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.header}"></td>
+        <td th:text="${account.email}"></td>
+        <td th:text="${account.password}"></td>
+        <td th:text="${account.price}"></td>
+        <td th:text="${account.followers}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<div>
+    <a th:if="${current_page!=1}" th:href="@{'/accounts_for_sale?pageNo=' + ${current_page - 1} +
+    '&pageSize=' +${pageSize}}">Previous</a>
+    <span th:unless="${current_page!=1}">Previous</span>
+</div>
+<div>
+    <a th:if="${current_page < totalPages}" th:href="@{'/accounts_for_sale?pageNo=' + ${current_page + 1}+
+    '&pageSize=' +${pageSize}}">Next</a>
+    <span th:unless="${current_page < totalPages}">Next</span>
+</div>
+<div>
+    <a th:if="${current_page < totalPages}" th:href="@{'/accounts_for_sale?pageNo=' + ${totalPages}+
+    '&pageSize=' +${pageSize}}">Last</a>
+    <span th:unless="${current_page < totalPages}">Last</span>
+</div>
+<a th:href="@{/accounts_for_sale?dropParams=true}">Drop all params</a>
+</html>

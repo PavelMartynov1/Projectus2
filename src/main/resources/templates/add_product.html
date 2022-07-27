@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/add_product}" th:object="${product}"  method="POST">
+    <p th:text="${codeException.getMessage()}" th:if="${codeException ne null}"></p>
+    <label for="productHeader">Header</label>
+    <input type="text" id="productHeader" th:field="*{header}">
+    <label for="productEmail">Email</label>
+    <input type="text" id="productEmail" th:field="*{email}">
+    <label for="productUsername">Username</label>
+    <input type="text" id="productUsername" th:field="*{username}">
+    <label for="productPassword">Password</label>
+    <input type="text" id="productPassword" th:field="*{password}">
+    <label for="productPrice">Price</label>
+    <input type="text" id="productPrice" th:field="*{price}">
+    <b th:text="*{code}"></b>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

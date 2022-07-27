@@ -18,7 +18,7 @@ public class Role  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "permission_role", joinColumns = {
             @JoinColumn(name = "role_id", referencedColumnName = "id") }, inverseJoinColumns = {
             @JoinColumn(name = "permission_id", referencedColumnName = "id") })
