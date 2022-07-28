@@ -1,9 +1,10 @@
-package com.tradinghub.projectus2.model;
+package com.tradinghub.projectus2.model.user;
 
+import com.tradinghub.projectus2.model.Permission;
+import com.tradinghub.projectus2.model.Role;
+import com.tradinghub.projectus2.model.user.UserInfo;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,13 +15,14 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "username")
+    @Column(unique=true,name = "username")
     private String username;
+    @Column(unique=true,name = "email")
     private String email;
 
     private String password;
@@ -37,13 +39,7 @@ public class User implements UserDetails {
 
     @Column(name = "verification_code", length = 64)
     private String verifyCode;
-    private boolean enabled=true;
-    @Column(name = "account_locked")
-    private boolean accountNonLocked=true;
-    @Column(name = "credentials_expired")
-    private boolean credentialsNonExpired=true;
-    @Column(name = "account_expired")
-    private boolean accountNonExpired=true;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @Cascade({CascadeType.SAVE_UPDATE, CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(name = "role_user", joinColumns = {
@@ -54,6 +50,25 @@ public class User implements UserDetails {
     @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "userinfo_id")
     private UserInfo userInfo;
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    @JoinColumn(name = "userDetails_id")
+    private CustomUserDetails userDetails;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public CustomUserDetails getCustomUserDetails() {
+        return userDetails;
+    }
+
+    public void setCustomUserDetails(CustomUserDetails customUserDetails) {
+        this.userDetails = customUserDetails;
+    }
 
     public UserInfo getUserInfo() {
         return userInfo;
@@ -102,49 +117,4 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        for (Role r: roles) {
-            authorities.add(new SimpleGrantedAuthority(r.getName()));
-            for (Permission p: r.getPermissions()) {
-                authorities.add(new SimpleGrantedAuthority(p.getName()));
-            }
-        }
-      return authorities;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return accountNonExpired;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return accountNonLocked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return credentialsNonExpired;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
 }

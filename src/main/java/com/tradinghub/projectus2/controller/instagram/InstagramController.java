@@ -5,26 +5,16 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.instagram.IgUser;
-import com.tradinghub.projectus2.controller.user.UserController;
-import com.tradinghub.projectus2.errorExeptions.WrongCodeException;
-import com.tradinghub.projectus2.model.Product;
-import com.tradinghub.projectus2.service.ProductService;
+import com.tradinghub.projectus2.service.AccountService;
 import com.tradinghub.projectus2.utils.SortHelper;
-import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import java.util.Optional;
 
 @Controller
 @RequestMapping(value="/inst")
@@ -32,7 +22,7 @@ public class InstagramController {
     @Autowired
     SortHelper sortHelper;
     @Autowired
-    ProductService productService;
+    AccountService accountService;
     Logger logger = LoggerFactory.getLogger(InstagramController.class);
 
 
@@ -48,62 +38,38 @@ public class InstagramController {
                 session.removeAttribute("sortParams");
             }
         }
-        Page<Product> page;
-        Optional<Sort> sortParams = sortHelper.getSort(price, followers);
-        if (sortParams.isPresent()) {
-            //logger.info("sort params are present");
-            page = productService.findPaginatedWithSort(pageNo - 1,
-                    pageSize,
-                    sortParams.get());
-            session.setAttribute("sortParams", sortParams.get());
-        } else {
-            //logger.info("sort params are not present and are taken from session");
-            Sort session_sort = (Sort) session.getAttribute("sortParams");
-            if (session_sort != null) {
-                page = productService.findPaginatedWithSort(pageNo - 1,
-                        pageSize,
-                        session_sort);
-            } else {
-                //logger.info("sort params are not present in session");
-                page = productService.findPaginated(pageNo - 1,
-                        pageSize);
+        /*
+        ПЕРЕПИСАТЬ
+         */
 
-            }
-        }
-        model.addAttribute("accounts", page.getContent());
-        model.addAttribute("current_page", page.getNumber() + 1);
-        model.addAttribute("totalPages", page.getTotalPages());
-        model.addAttribute("pageSize",pageSize);
+//        Page<Product> page;
+//        Optional<Sort> sortParams = sortHelper.getSort(price, followers);
+//        if (sortParams.isPresent()) {
+//            //logger.info("sort params are present");
+//            page = productService.findPaginatedWithSort(pageNo - 1,
+//                    pageSize,
+//                    sortParams.get());
+//            session.setAttribute("sortParams", sortParams.get());
+//        } else {
+//            //logger.info("sort params are not present and are taken from session");
+//            Sort session_sort = (Sort) session.getAttribute("sortParams");
+//            if (session_sort != null) {
+//                page = productService.findPaginatedWithSort(pageNo - 1,
+//                        pageSize,
+//                        session_sort);
+//            } else {
+//                //logger.info("sort params are not present in session");
+//                page = productService.findPaginated(pageNo - 1,
+//                        pageSize);
+//
+//            }
+//        }
+//        model.addAttribute("accounts", page.getContent());
+//        model.addAttribute("current_page", page.getNumber() + 1);
+//        model.addAttribute("totalPages", page.getTotalPages());
+//        model.addAttribute("pageSize",pageSize);
         return "accounts_for_sale";
 
-    }
-
-    @RequestMapping(value = "/add_product", method = RequestMethod.GET)
-    public String getAddProductPage(Model model, HttpSession session) {
-        Product product = new Product();
-        String code = RandomString.make(8);
-        session.setAttribute("account_code", code);
-        product.setCode(code);
-        model.addAttribute("product", product);
-        return "add_product";
-    }
-
-    @RequestMapping(value = "/add_product", method = RequestMethod.POST)
-    public String addProductPage(@ModelAttribute("product")
-                                 @Valid Product product, HttpSession session, Model model) {
-        String code = null;
-        if (session != null) {
-            code = (String) session.getAttribute("account_code");
-        }
-        logger.info("Code: " + code);
-        try {
-            product = productService.verifyAccount(product, code);
-        } catch (WrongCodeException e) {
-            model.addAttribute("codeException", e);
-            return "add_product";
-        }
-        productService.saveProduct(product);
-        return "add_product_success";
     }
 
     @RequestMapping(value = "/instagram_info", method = RequestMethod.GET)

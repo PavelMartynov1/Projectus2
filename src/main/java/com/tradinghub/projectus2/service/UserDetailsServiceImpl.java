@@ -1,6 +1,6 @@
 package com.tradinghub.projectus2.service;
 
-import com.tradinghub.projectus2.model.User;
+import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +25,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             //Добавить исключение
             logger.warn("User == null");
         }
-
         logger.info("Найден пользователь при входе "+user.getUsername());
-        logger.info("Role "+user.getAuthorities().toString());
+        logger.info("Role "+user.getCustomUserDetails().getAuthorities().toString());
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(),
-                user.getPassword(), user.isEnabled(),
-                user.isAccountNonExpired(),
-                user.isCredentialsNonExpired(),
-                user.isAccountNonLocked(),
-                user.getAuthorities());
+                user.getPassword(), user.getCustomUserDetails().isEnabled(),
+                user.getCustomUserDetails().isAccountNonExpired(),
+                user.getCustomUserDetails().isCredentialsNonExpired(),
+                user.getCustomUserDetails().isAccountNonLocked(),
+                user.getCustomUserDetails().getAuthorities());
     }
 }

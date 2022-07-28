@@ -1,6 +1,6 @@
 package com.tradinghub.projectus2.service;
 
-import com.tradinghub.projectus2.model.UserInfo;
+import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

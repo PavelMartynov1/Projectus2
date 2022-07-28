@@ -1,4 +1,4 @@
-package com.tradinghub.projectus2.model;
+package com.tradinghub.projectus2.model.user;
 
 import javax.persistence.*;
 

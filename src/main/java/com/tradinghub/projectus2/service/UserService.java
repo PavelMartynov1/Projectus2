@@ -1,10 +1,10 @@
 package com.tradinghub.projectus2.service;
 
-import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.Role;
-import com.tradinghub.projectus2.model.User;
-import com.tradinghub.projectus2.model.UserInfo;
+import com.tradinghub.projectus2.model.user.CustomUserDetails;
+import com.tradinghub.projectus2.model.user.User;
+import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.repository.UserRepository;
 import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
@@ -43,14 +43,10 @@ public class UserService {
         logger.info("starting process of verifying " + verifyCode);
         logger.info("In DB user code " + user.getVerifyCode());
 
-        if (user == null) {
-            return false;
-        } else {
-            user.setVerifyCode(null);
-            user.setEnabled(true);
-            userRepo.save(user);
-            return true;
-        }
+        user.setVerifyCode(null);
+        user.getCustomUserDetails().setEnabled(true);
+        userRepo.save(user);
+        return true;
 
     }
     public void changeUserPassword(String username,String password,String newPassword){
@@ -89,6 +85,9 @@ public class UserService {
         userRole.add(new Role("ROLE_USER"));
         user.setRoles(userRole);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setCustomUserDetails(new CustomUserDetails());
+        user.setUserInfo(new UserInfo());
+        user.getCustomUserDetails().setEnabled(false);
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
         logger.info("Saved new User " + user.getUsername());

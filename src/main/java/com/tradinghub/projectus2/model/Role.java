@@ -1,7 +1,5 @@
 package com.tradinghub.projectus2.model;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-import org.springframework.security.core.GrantedAuthority;
+import com.tradinghub.projectus2.model.user.User;
 
 import javax.persistence.*;
 import java.util.List;
