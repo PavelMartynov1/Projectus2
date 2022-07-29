@@ -6,9 +6,9 @@
     <meta charset="utf-8">
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <title>Home</title>
+    <title>instagram</title>
     <link rel="stylesheet" th:href="@{/css/nicepage.css}" media="screen">
-    <link rel="stylesheet" th:href="@{/css/Home.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/instagram.css}" media="screen">
     <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
     <script class="u-script" type="text/javascript" th:src="@{/js/nicepage.js}" defer=""></script>
     <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
@@ -33,9 +33,9 @@
     <meta name="theme-color" content="#478ac9">
     <meta name="twitter:site" content="@">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Home">
+    <meta name="twitter:title" content="instagram">
     <meta name="twitter:description" content="Site1">
-    <meta property="og:title" content="Home">
+    <meta property="og:title" content="instagram">
     <meta property="og:type" content="website">
 </head>
 <body class="u-body u-xl-mode" data-lang="ru">
@@ -64,7 +64,7 @@
                     <ul class="u-custom-font u-nav u-unstyled u-nav-1">
                         <li class="u-nav-item"><a
                                 class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                th:href="@{/home}" style="padding: 26px 14px;">Home</a>
+                                href="Home.html" style="padding: 26px 14px;">Home</a>
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
@@ -80,11 +80,11 @@
                         </li>
                         <li class="u-nav-item"><a
                                 class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                th:href="@{/profile}" style="padding: 26px 19px 26px 14px;">User Cabinet</a>
+                                href="User-Cabinet.html" style="padding: 26px 19px 26px 14px;">User Cabinet</a>
                             <div class="u-nav-popup">
                                 <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
-                                                              th:href="@{user/sell_item}">Sell Account</a>
+                                                              href="Sell-account.html">Sell Account</a>
                                     </li>
                                     <li class="u-nav-item"><a class="u-button-style u-nav-link u-white">My Wallet</a>
                                     </li>
@@ -98,7 +98,7 @@
                         <div class="u-inner-container-layout u-sidenav-overflow">
                             <div class="u-menu-close"></div>
                             <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/home}">Home</a>
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html">Home</a>
                                 </li>
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link">Sales</a>
                                 </li>
@@ -106,12 +106,12 @@
                                 </li>
                                 <li class="u-nav-item"><a class="u-button-style u-nav-link">Mesenger</a>
                                 </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/profile}">User
+                                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="User-Cabinet.html">User
                                     Cabinet</a>
                                     <div class="u-nav-popup">
                                         <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
                                             <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                                                      th:href="@{user/sell_item}">Sell Account</a>
+                                                                      href="Sell-account.html">Sell Account</a>
                                             </li>
                                             <li class="u-nav-item"><a class="u-button-style u-nav-link">My Wallet</a>
                                             </li>
@@ -126,26 +126,26 @@
             </nav>
         </div>
     </div>
-    <a href="https://nicepage.com/c/table-html-templates" class="u-image u-logo u-image-1" data-image-width="1875"
+    <a  class="u-image u-logo u-image-1" data-image-width="1875"
        data-image-height="382">
         <img th:src="@{/images/testc2.png}" class="u-logo-image u-logo-image-1">
     </a></header>
-<section class="u-clearfix u-image u-section-1" id="sec-3071" data-image-width="1080" data-image-height="1080">
+<section class="u-clearfix u-image u-section-1" id="sec-7474" data-image-width="1080" data-image-height="1080">
     <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
             <div class="u-container-layout u-valign-top u-container-layout-1">
                 <div class="u-form u-form-1">
-                    <form th:action="@{/home}" method="GET"
+                    <form th:action="@{/inst}" method="GET"
                           class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form"
                           source="custom" name="form" style="padding: 10px;" redirect="true">
                         <div class="u-form-group u-form-select u-form-group-1">
-                            <label for="select-01fd" class="u-label u-text-body-alt-color">Категория</label>
+                            <label for="select-5907" class="u-label u-text-body-alt-color">Цена</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-01fd" name="category"
+                                <select id="select-5907" name="price"
                                         class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option disabled selected value>Choose category</option>
-                                    <option value="'fb'">Facebook</option>
-                                    <option value="'inst'">Instagram</option>
+                                    <option disabled selected value>Sort by price </option>
+                                    <option value="ASC">ASC</option>
+                                    <option value="DSC">DSC</option>
                                 </select>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
                                      class="u-caret">
@@ -154,11 +154,12 @@
                             </div>
                         </div>
                         <div class="u-form-group u-form-select u-form-group-2">
-                            <label for="select-5907" class="u-label u-text-body-alt-color">Цена</label>
+                            <label for="select-2f20" class="u-label u-text-body-alt-color">Количество
+                                подпрыщиков</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-5907" name="price"
+                                <select id="select-2f20" name="followers"
                                         class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option disabled selected value>Sort by price</option>
+                                    <option disabled selected value>Sort by followers </option>
                                     <option value="ASC">ASC</option>
                                     <option value="DSC">DSC</option>
                                 </select>
@@ -169,22 +170,6 @@
                             </div>
                         </div>
                         <div class="u-form-group u-form-select u-form-group-3">
-                            <label for="select-2f20" class="u-label u-text-body-alt-color">Количество
-                                подпрыщиков</label>
-                            <div class="u-form-select-wrapper">
-                                <select id="select-2f20" name="followers"
-                                        class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option disabled selected value>Sort by followers</option>
-                                    <option value="ASC">ASC</option>
-                                    <option value="DSC">DSC</option>
-                                </select>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
-                                     class="u-caret">
-                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="u-form-group u-form-select u-form-group-4">
                             <label for="select-c633" class="u-label u-text-body-alt-color">Товаров на странице</label>
                             <div class="u-form-select-wrapper">
                                 <select id="select-c633" name="pageSize"
@@ -200,25 +185,24 @@
                             </div>
                         </div>
                         <div class="u-align-center u-form-group u-form-submit">
-                            <a th:href="@{/home}"
+                            <a th:href="@{/inst}"
                                class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-font-merriweather u-radius-20 u-btn-1">Отправить</a>
                             <input type="submit" value="submit" class="u-form-control-hidden">
                         </div>
-                        <input type="hidden" value="" name="recaptchaResponse">
                     </form>
                 </div>
             </div>
         </div><!--products--><!--products_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}-->
         <!--/products_options_json-->
         <div th:each="item : ${items}" class="u-expanded-width u-pagination-center u-products u-products-1">
-            <div  class="u-repeater u-repeater-1"><!--product_item-->
+            <div class="u-repeater u-repeater-1"><!--product_item-->
                 <div th:if="${item[0]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-1">
                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
                         <!--product_image-->
                         <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
                              th:src="@{/images/5.png}"><!--/product_image--><!--product_title-->
                         <h4 class="u-align-center u-product-control u-text u-text-1">
-                            <a th:text="${item[0].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
+                            <a  th:text="${item[0].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
                                 <!--/product_title_content--></a>
                         </h4><!--/product_title--><!--product_price-->
                         <div class="u-product-control u-product-price u-product-price-1">
@@ -251,7 +235,7 @@
                                 <div class="u-hide-price u-old-price"><!--product_old_price_content-->
                                     <!--/product_old_price_content--></div><!--/product_old_price-->
                                 <!--product_regular_price-->
-                                <div  th:text="${item[1].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
+                                <div th:text="${item[1].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
                                     <!--product_regular_price_content--><!--/product_regular_price_content--></div>
                                 <!--/product_regular_price-->
                             </div>
@@ -262,7 +246,7 @@
                             <!--product_button_content-->КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
                     </div>
                 </div><!--/product_item--><!--product_item-->
-                <div th:if="${item[2]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-3">
+                <div th:if="${item[2]!=null }"  class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-3">
                     <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
                         <!--product_image-->
                         <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3"
@@ -328,7 +312,7 @@
                 </div>
                 <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle">
                     <div class="u-container-layout u-similar-container u-container-layout-7">
-                         <a th:if="${current_page!=1}" th:href="@{'/home?pageNo='
+                        <a th:if="${current_page!=1}" th:href="@{'/home?pageNo='
                         + ${current_page-1} +
     '&pageSize=' +${pageSize}}"
                            class="u-active-none u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-none u-none u-text-body-alt-color u-btn-7">Назад</a>

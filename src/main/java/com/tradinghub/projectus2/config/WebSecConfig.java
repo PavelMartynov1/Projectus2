@@ -33,19 +33,16 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().
-                antMatchers("/login", "/logout","/registration")
-                .permitAll()
-                .antMatchers("/login_success").hasRole("USER")
-                .antMatchers("/users").hasRole("ADMIN")
-                .antMatchers( "/js/**", "/css/**")
-                .permitAll()
-//                .anyRequest().authenticated()
-                .and().exceptionHandling().accessDeniedPage("/access_denied.html").and()
-                .formLogin()
-                .usernameParameter("username").defaultSuccessUrl("/profile")
-                .and()
-                .logout().logoutSuccessUrl("/");
+       http.authorizeRequests().antMatchers("/login").permitAll()
+               .antMatchers("/registration").permitAll()
+               .antMatchers("/home").permitAll()
+               .antMatchers("/inst").permitAll()
+               .antMatchers( "/js/", "/css/")
+               .permitAll()
+               .antMatchers("/profile").authenticated()
+               .and().formLogin().usernameParameter("username")
+               .defaultSuccessUrl("/profile").permitAll()
+               .and().logout().permitAll();
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

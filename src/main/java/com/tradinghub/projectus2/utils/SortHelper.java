@@ -68,6 +68,7 @@ public class SortHelper {
 //        }
 //        return Optional.of(sortByGroup);
 //    }
+
         if (price == null & followersCount == null) {
             logger.info("params are null");
             return Optional.empty();

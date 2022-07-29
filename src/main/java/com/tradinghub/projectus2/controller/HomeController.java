@@ -42,20 +42,19 @@ public class HomeController {
             @RequestParam(required = false, name = "price") String price,
             Model model,
             HttpSession session) {
-        logger.info(category);
-        logger.info(followers);
-        logger.info(price);
 
         if (drop != null) {
             if (drop) {
                 session.removeAttribute("sortParams");
             }
         }
-        String url;
+        String url="home";
         Page<Account> page;
         Optional<Sort> sortParams= helper.getSort(price,followers);
         if (category != null) {
-            url = "redirect:/" + category;
+            if(category.equals("'inst'")) {
+                url = "redirect:/inst" ;
+            }
             return url;
         }
         if (sortParams.isPresent()) {

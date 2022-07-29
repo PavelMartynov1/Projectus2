@@ -6,6 +6,7 @@ import com.restfb.Version;
 import com.restfb.types.instagram.IgUser;
 import com.tradinghub.projectus2.errorExeptions.WrongCodeException;
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.repository.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -33,6 +35,20 @@ public class AccountService {
     public void saveAccount(Account account){
         accountRepository.save(account);
 
+    }
+    public Optional<Account> findById(String id){
+        return accountRepository.findById(Long.valueOf(id));
+
+    }
+    public Page<Account> findPaginatedByCategory(AccountCategory category, int pageNo, int pageSize){
+        Pageable paging= PageRequest.of(pageNo,pageSize);
+        Page<Account> pagedResult=accountRepository.findAccountByCategory(category,paging);
+        return pagedResult;
+    }
+    public Page<Account> findPaginatedByCategoryWithSort(AccountCategory category,int pageNo, int pageSize,Sort sort){
+        Pageable paging= PageRequest.of(pageNo,pageSize,sort);
+        Page<Account> pagedResult=accountRepository.findAccountByCategoryWithSort(category,paging);
+        return pagedResult;
     }
     public Page<Account> findPaginated(int pageNo, int pageSize){
         Pageable paging= PageRequest.of(pageNo,pageSize);
