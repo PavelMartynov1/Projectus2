@@ -1,67 +1,81 @@
 package com.tradinghub.projectus2.utils;
 
+import com.tradinghub.projectus2.model.enums.AccountCategory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Sort;
 
 import java.util.Optional;
 
 public class HomeSortHelper {
-
+    Logger logger = LoggerFactory.getLogger(HomeSortHelper.class);
     private String price;
     private String followersCount;
     private Sort sortByGroup;
     public HomeSortHelper() {
     }
-    public Optional<Sort> getSortParams(){
-        if (price == null & followersCount == null) {
-            return Optional.empty();
+
+    public Optional<Sort> getSortParams() {
+        int flag = 0;
+        if(price==null){
+            flag++;
+        }else if(price.isEmpty()){
+            flag=1;
+        }else{
+            flag=2;
         }
-        Sort priceSort = null;
-        if (price != null) {
-            if (price.equals("ASC")) {
-                priceSort = Sort.by("price").ascending();
-            } else if (price.equals("DSC")) {
-                priceSort = Sort.by("price").descending();
-            }
+        if(followersCount==null){
+            flag=3;
+        }else if(followersCount.isEmpty()){
+            flag=3;
+        }else{
+            flag=4;
         }
-        Sort followersSort = null;
-        if (followersCount != null) {
-            if (followersCount.equals("ASC")) {
-                followersSort = Sort.by("followers").ascending();
-            } else if (followersCount.equals("DSC")) {
-                followersSort = Sort.by("followers").descending();
-            }
+        switch (flag) {
+            case 0:
+                logger.info("params are not present");
+                return Optional.empty();
+            case 1:
+                logger.info("price not present");
+                sortByGroup = getSortByValue(followersCount);
+                break;
+            case 2:
+                logger.info("followersCount not present");
+                sortByGroup = getSortByValue(price);
+                break;
+            default:
+                logger.info("all params are present");
+                sortByGroup=getSortByValue(price).and(getSortByValue(followersCount));
         }
-        if (priceSort != null) {
-            if (followersSort != null) {
-                sortByGroup = priceSort.and(followersSort);
-                return Optional.of(sortByGroup);
-            } else {
-                return Optional.of(priceSort);
-            }
-        } else {
-            if(followersSort!=null) {
-                sortByGroup = followersSort;
-                return Optional.of(sortByGroup);
-            }
-            return Optional.empty();
-        }
+        return Optional.of(sortByGroup);
     }
-    public static Builder newBuilder(){
+
+    private Sort getSortByValue(String value) {
+        Sort tempSort;
+        tempSort = value.equals("ASC") ? Sort.by(value).ascending() : Sort.by(value).descending();
+        logger.info(value + "is set" + value);
+        return tempSort;
+    }
+
+    public static Builder newBuilder() {
         return new HomeSortHelper().new Builder();
     }
-    public class Builder{
+
+    public class Builder {
         public Builder() {
         }
 
-        public Builder setPrice(String price){
-            HomeSortHelper.this.price=price;
+        public Builder setPrice(String price) {
+            HomeSortHelper.this.price = price;
             return this;
         }
-        public Builder setFollowers(String followers){
-            HomeSortHelper.this.followersCount=followers;
+
+        public Builder setFollowers(String followers) {
+            HomeSortHelper.this.followersCount = followers;
             return this;
         }
-        public HomeSortHelper build(){
+
+        public HomeSortHelper build() {
             return HomeSortHelper.this;
         }
     }

@@ -1,21 +1,16 @@
-package com.tradinghub.projectus2.model.instagram;
+package com.tradinghub.projectus2.model.account;
 
 import com.tradinghub.projectus2.model.enums.Currency;
-import com.tradinghub.projectus2.model.intefaces.Account;
-import com.tradinghub.projectus2.model.intefaces.AccountInfo;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "instInfo")
-public class InstagramAccountInfo implements AccountInfo {
-    public InstagramAccountInfo(@NotNull InstagramAccount account) {
-        this.account = account;
+@Table(name="account_info")
+public class AccountInfo {
+    public AccountInfo() {
     }
 
-    public InstagramAccountInfo() {
+    public AccountInfo(Account account) {
+        this.account = account;
     }
 
     @Id
@@ -38,34 +33,22 @@ public class InstagramAccountInfo implements AccountInfo {
     @Enumerated(EnumType.STRING)
     private Currency currency;
     @OneToOne(mappedBy = "accountInfo")
-    private InstagramAccount account;
+    private Account account;
 
-    @Override
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    @Override
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-    public void setCurrency(String currency) {
-        this.currency = Currency.valueOf(currency);
-    }
-    public Long getId() {
-        return id;
+    public String getHeader() {
+        return header;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHeader(String header) {
+        this.header = header;
     }
 
-    public InstagramAccount getAccount() {
-        return account;
+    public String getText() {
+        return text;
     }
 
-    public void setAccount(InstagramAccount account) {
-        this.account = account;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getIncome() {
@@ -108,23 +91,19 @@ public class InstagramAccountInfo implements AccountInfo {
         this.price = price;
     }
 
-    @Override
-    public void setHeader(String header) {
-        this.header = header;
+    public Currency getCurrency() {
+        return currency;
     }
 
-    @Override
-    public String getHeader() {
-        return header;
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
-    @Override
-    public void setText(String text) {
-        this.text = text;
+    public Account getAccount() {
+        return account;
     }
 
-    @Override
-    public String getText() {
-        return text;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

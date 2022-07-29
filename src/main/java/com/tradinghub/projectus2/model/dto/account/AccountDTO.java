@@ -1,14 +1,13 @@
-package com.tradinghub.projectus2.model.dto.instagramdto;
+package com.tradinghub.projectus2.model.dto.account;
 
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.model.enums.Currency;
-import com.tradinghub.projectus2.model.instagram.InstagramAccount;
-import com.tradinghub.projectus2.model.intefaces.Account;
+import com.tradinghub.projectus2.model.account.Account;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-public class InstagramDTO {
+public class AccountDTO {
     @NotBlank(message = "email error")
     @Email
     private String email;
@@ -31,8 +30,8 @@ public class InstagramDTO {
     private String price;
     @NotBlank(message = "currency error")
     private String currency;
-    public InstagramAccount build(){
-        InstagramAccount account=new InstagramAccount();
+    public Account build(){
+        Account account=new Account();
         account.setEmail(email);
         account.setPassword(password);
         account.setCategory(AccountCategory.valueOf(category));

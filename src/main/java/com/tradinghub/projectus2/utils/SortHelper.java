@@ -72,23 +72,28 @@ public class SortHelper {
             logger.info("params are null");
             return Optional.empty();
         }
+
         Sort priceSort = null;
         if (price != null) {
             if (price.equals("ASC")) {
-                priceSort = Sort.by("price").ascending();
+                priceSort=Sort.by(new Sort.Order(Sort.Direction.ASC,"accountInfo.price"));
+                //priceSort = Sort.by("price").ascending();
                 logger.info("price is set asc");
             } else if (price.equals("DSC")) {
-                priceSort = Sort.by("price").descending();
+                priceSort=Sort.by(new Sort.Order(Sort.Direction.DESC,"accountInfo.price"));
+                //priceSort = Sort.by("price").descending();
                 logger.info("price is set desc");
             }
         }
         Sort followersSort = null;
         if (followersCount != null) {
             if (followersCount.equals("ASC")) {
-                followersSort = Sort.by("followers").ascending();
+                followersSort=Sort.by(new Sort.Order(Sort.Direction.ASC,"accountInfo.followers"));
+                //followersSort = Sort.by("followers").ascending();
                 logger.info("followers is set asc");
             } else if (followersCount.equals("DSC")) {
-                followersSort = Sort.by("followers").descending();
+                followersSort=Sort.by(new Sort.Order(Sort.Direction.DESC,"accountInfo.followers"));
+              //  followersSort = Sort.by("followers").descending();
                 logger.info("price is set desc");
             }
         }

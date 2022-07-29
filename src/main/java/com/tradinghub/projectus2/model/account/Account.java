@@ -1,12 +1,15 @@
-package com.tradinghub.projectus2.model.intefaces;
+package com.tradinghub.projectus2.model.account;
 
 import com.tradinghub.projectus2.model.enums.AccountCategory;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="account")
 public class Account {
+    public Account() {
+        this.accountInfo=new AccountInfo(this);
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,6 +19,17 @@ public class Account {
     private String password;
     @Enumerated(EnumType.STRING)
     private AccountCategory category;
+    @OneToOne(cascade = javax.persistence.CascadeType.ALL)
+    @JoinColumn(name = "accountInfo_id")
+    private AccountInfo accountInfo;
+
+    public AccountInfo getAccountInfo() {
+        return accountInfo;
+    }
+
+    public void setAccountInfo(AccountInfo accountInfo) {
+        this.accountInfo = accountInfo;
+    }
 
     public String getEmail() {
         return email;

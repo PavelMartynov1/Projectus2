@@ -2,7 +2,7 @@ package com.tradinghub.projectus2.controller.user;
 
 import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
-import com.tradinghub.projectus2.model.dto.instagramdto.InstagramDTO;
+import com.tradinghub.projectus2.model.dto.account.AccountDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.service.AccountService;
@@ -61,7 +61,7 @@ public class UserController {
      */
     @RequestMapping(value = "user/sell_item", method = RequestMethod.GET)
     public String getSellItemPage(Model model) {
-        model.addAttribute("account",new InstagramDTO());
+        model.addAttribute("account",new AccountDTO());
         return "user/sell_account.html";
     }
 
@@ -69,7 +69,7 @@ public class UserController {
      Saves account for sale
      */
     @RequestMapping(value = "user/sell_item", method = RequestMethod.POST)
-    public String add_item(@ModelAttribute("account") @Valid InstagramDTO account,
+    public String add_item(@ModelAttribute("account") @Valid AccountDTO account,
                            BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             return "user/sell_account.html";
