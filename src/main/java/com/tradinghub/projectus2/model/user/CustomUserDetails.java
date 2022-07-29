@@ -2,6 +2,7 @@ package com.tradinghub.projectus2.model.user;
 
 import com.tradinghub.projectus2.model.Permission;
 import com.tradinghub.projectus2.model.Role;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,13 +19,13 @@ public class CustomUserDetails implements UserDetails {
     private Long id;
     @OneToOne(mappedBy = "userDetails")
     private User user;
-    @Column(columnDefinition="bit default 1")
+    @ColumnDefault("true")
     private boolean isAccountNonExpired;
-    @Column(columnDefinition="bit default 1")
+    @ColumnDefault("true")
     private boolean isAccountNonLocked;
-    @Column(columnDefinition="bit default 0")
+    @ColumnDefault("false")
     private boolean isEnabled;
-    @Column(columnDefinition="bit default 1")
+    @ColumnDefault("true")
     private boolean isCredentialsNonExpired;
     public User getUser() {
         return user;
