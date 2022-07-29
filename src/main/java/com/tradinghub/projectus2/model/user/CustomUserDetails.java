@@ -18,9 +18,13 @@ public class CustomUserDetails implements UserDetails {
     private Long id;
     @OneToOne(mappedBy = "userDetails")
     private User user;
+    @Column(columnDefinition="bit default 1")
     private boolean isAccountNonExpired;
+    @Column(columnDefinition="bit default 1")
     private boolean isAccountNonLocked;
+    @Column(columnDefinition="bit default 0")
     private boolean isEnabled;
+    @Column(columnDefinition="bit default 1")
     private boolean isCredentialsNonExpired;
     public User getUser() {
         return user;

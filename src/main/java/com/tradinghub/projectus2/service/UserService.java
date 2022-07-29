@@ -85,12 +85,9 @@ public class UserService {
         userRole.add(new Role("ROLE_USER"));
         user.setRoles(userRole);
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        user.setCustomUserDetails(new CustomUserDetails());
-//        user.setUserInfo(new UserInfo());
-//        user.getCustomUserDetails().setEnabled(false);
-//        user.getCustomUserDetails().setAccountNonExpired(true);
-//        user.getCustomUserDetails().setAccountNonLocked(true);
-//        user.getCustomUserDetails().setCredentialsNonExpired(true);
+        user.setCustomUserDetails(new CustomUserDetails());
+        user.setUserInfo(new UserInfo());
+        user.getCustomUserDetails().setEnabled(false);
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
        // logger.info("Saved new User " + user.getUsername());
