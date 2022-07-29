@@ -20,6 +20,7 @@ public class CustomUserDetails implements UserDetails {
     private User user;
     private boolean isAccountNonExpired=true;
     private boolean isAccountNonLocked=true;
+    @Column(columnDefinition = "boolean default false")
     private boolean isEnabled=false;
     private boolean isCredentialsNonExpired=true;
     public User getUser() {
