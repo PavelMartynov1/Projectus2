@@ -88,6 +88,9 @@ public class UserService {
         user.setCustomUserDetails(new CustomUserDetails());
         user.setUserInfo(new UserInfo());
         user.getCustomUserDetails().setEnabled(false);
+        user.getCustomUserDetails().setAccountNonExpired(true);
+        user.getCustomUserDetails().setAccountNonLocked(true);
+        user.getCustomUserDetails().setCredentialsNonExpired(true);
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
        // logger.info("Saved new User " + user.getUsername());

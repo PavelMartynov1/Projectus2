@@ -18,13 +18,24 @@ public class CustomUserDetails implements UserDetails {
     private Long id;
     @OneToOne(mappedBy = "userDetails")
     private User user;
-    private boolean isAccountNonExpired=true;
-    private boolean isAccountNonLocked=true;
-    @Column(columnDefinition = "boolean default false")
-    private boolean isEnabled=false;
-    private boolean isCredentialsNonExpired=true;
+    private boolean isAccountNonExpired;
+    private boolean isAccountNonLocked;
+    private boolean isEnabled;
+    private boolean isCredentialsNonExpired;
     public User getUser() {
         return user;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        isAccountNonExpired = accountNonExpired;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        isAccountNonLocked = accountNonLocked;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
     }
 
     public void setEnabled(boolean enabled) {
