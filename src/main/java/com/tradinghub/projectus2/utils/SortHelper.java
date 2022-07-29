@@ -70,7 +70,7 @@ public class SortHelper {
 //    }
 
         if (price == null & followersCount == null) {
-            logger.info("params are null");
+          //  logger.info("params are null");
             return Optional.empty();
         }
 
@@ -79,11 +79,11 @@ public class SortHelper {
             if (price.equals("ASC")) {
                 priceSort=Sort.by(new Sort.Order(Sort.Direction.ASC,"accountInfo.price"));
                 //priceSort = Sort.by("price").ascending();
-                logger.info("price is set asc");
+              //  logger.info("price is set asc");
             } else if (price.equals("DSC")) {
                 priceSort=Sort.by(new Sort.Order(Sort.Direction.DESC,"accountInfo.price"));
                 //priceSort = Sort.by("price").descending();
-                logger.info("price is set desc");
+              //  logger.info("price is set desc");
             }
         }
         Sort followersSort = null;
@@ -91,30 +91,30 @@ public class SortHelper {
             if (followersCount.equals("ASC")) {
                 followersSort=Sort.by(new Sort.Order(Sort.Direction.ASC,"accountInfo.followers"));
                 //followersSort = Sort.by("followers").ascending();
-                logger.info("followers is set asc");
+               // logger.info("followers is set asc");
             } else if (followersCount.equals("DSC")) {
                 followersSort=Sort.by(new Sort.Order(Sort.Direction.DESC,"accountInfo.followers"));
               //  followersSort = Sort.by("followers").descending();
-                logger.info("price is set desc");
+               // logger.info("price is set desc");
             }
         }
         if (priceSort != null) {
-            logger.info("price is not null");
+            //logger.info("price is not null");
             if (followersSort != null) {
-                logger.info("followers also not null");
+             //   logger.info("followers also not null");
                 sortByGroup = priceSort.and(followersSort);
                 return Optional.of(sortByGroup);
             } else {
-                logger.info("followers are null");
+              //  logger.info("followers are null");
                 return Optional.of(priceSort);
             }
         } else {
             if(followersSort!=null) {
-                logger.info("price is null");
+               // logger.info("price is null");
                 sortByGroup = followersSort;
                 return Optional.of(sortByGroup);
             }
-            logger.info("followers are null");
+           // logger.info("followers are null");
             return Optional.empty();
         }
     }

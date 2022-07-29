@@ -23,10 +23,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         User user=userRepo.findByUsername(username);
         if(user==null){
             //Добавить исключение
-            logger.warn("User == null");
+           // logger.warn("User == null");
         }
-        logger.info("Найден пользователь при входе "+user.getUsername());
-        logger.info("Role "+user.getCustomUserDetails().getAuthorities().toString());
+       // logger.info("Найден пользователь при входе "+user.getUsername());
+       // logger.info("Role "+user.getCustomUserDetails().getAuthorities().toString());
         return new org.springframework.security.core.userdetails
                 .User(user.getUsername(),
                 user.getPassword(), user.getCustomUserDetails().isEnabled(),

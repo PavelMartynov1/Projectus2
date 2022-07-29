@@ -1,10 +1,5 @@
 package com.tradinghub.projectus2.service;
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.Version;
-import com.restfb.types.instagram.IgUser;
-import com.tradinghub.projectus2.errorExeptions.WrongCodeException;
+
 import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.repository.AccountRepository;

@@ -33,18 +33,18 @@ public class HomeSortHelper {
         }
         switch (flag) {
             case 0:
-                logger.info("params are not present");
+               // logger.info("params are not present");
                 return Optional.empty();
             case 1:
-                logger.info("price not present");
+              //  logger.info("price not present");
                 sortByGroup = getSortByValue(followersCount);
                 break;
             case 2:
-                logger.info("followersCount not present");
+              //  logger.info("followersCount not present");
                 sortByGroup = getSortByValue(price);
                 break;
             default:
-                logger.info("all params are present");
+              //  logger.info("all params are present");
                 sortByGroup=getSortByValue(price).and(getSortByValue(followersCount));
         }
         return Optional.of(sortByGroup);
@@ -53,7 +53,7 @@ public class HomeSortHelper {
     private Sort getSortByValue(String value) {
         Sort tempSort;
         tempSort = value.equals("ASC") ? Sort.by(value).ascending() : Sort.by(value).descending();
-        logger.info(value + "is set" + value);
+        //logger.info(value + "is set" + value);
         return tempSort;
     }
 

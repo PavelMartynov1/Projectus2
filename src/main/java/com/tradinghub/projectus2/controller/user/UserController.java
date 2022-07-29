@@ -82,10 +82,10 @@ public class UserController {
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
         if (userService.verify(code)) {
-            logger.info("User verified");
+           // logger.info("User verified");
             return "verify_success";
         } else {
-            logger.info("verify_fail");
+           // logger.info("verify_fail");
             return "verify_fail";
         }
     }
@@ -116,7 +116,7 @@ public class UserController {
                     (principal.getName(), password, newPassword);
         } catch (PasswordException e) {
             model.addAttribute("password", e.getMessage());
-            logger.info("passwordException");
+           // logger.info("passwordException");
         }
         return "redirect:/login";
     }
@@ -137,10 +137,6 @@ public class UserController {
         user.setUserInfo(userInfo);
         userService.setUserInfo(user);
         userInfoService.saveUserInfo(userInfo);
-        logger.info(userInfo.getFirstName());
-        logger.info(userInfo.getLastName());
-        logger.info(userInfo.getTg());
-        logger.info(userInfo.getNumber());
         return "redirect:/profile";
     }
 

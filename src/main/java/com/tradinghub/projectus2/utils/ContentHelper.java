@@ -64,21 +64,21 @@ public class ContentHelper {
 
     }
     public void showList(List<Account[]> list) {
-        logger.info("=================");
+       // logger.info("=================");
         for (Account[] product : list) {
             if((product[0] != null)) {
-                logger.info(product[0].getAccountInfo().getHeader());
+              //  logger.info(product[0].getAccountInfo().getHeader());
             }
             if (product[1] != null) {
-                logger.info(product[1].getAccountInfo().getHeader());
+              //  logger.info(product[1].getAccountInfo().getHeader());
             }
             if (product[2] != null) {
-                logger.info(product[2].getAccountInfo().getHeader());
+             //   logger.info(product[2].getAccountInfo().getHeader());
             }
             if (product[3] != null) {
-                logger.info(product[3].getAccountInfo().getHeader());
+                //logger.info(product[3].getAccountInfo().getHeader());
             }
         }
-        logger.info("=================");
+       // logger.info("=================");
     }
 }

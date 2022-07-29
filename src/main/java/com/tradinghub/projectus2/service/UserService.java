@@ -40,8 +40,8 @@ public class UserService {
     }
     public boolean verify(String verifyCode) {
         User user = userRepo.findByCode(verifyCode);
-        logger.info("starting process of verifying " + verifyCode);
-        logger.info("In DB user code " + user.getVerifyCode());
+       // logger.info("starting process of verifying " + verifyCode);
+      //  logger.info("In DB user code " + user.getVerifyCode());
 
         user.setVerifyCode(null);
         user.getCustomUserDetails().setEnabled(true);
@@ -69,8 +69,8 @@ public class UserService {
     }
     public boolean checkValidPassword(String password,User user){
         String encodedPassword=bCryptPasswordEncoder.encode(password);
-        logger.info(encodedPassword);
-        logger.info(user.getPassword());
+      //  logger.info(encodedPassword);
+       // logger.info(user.getPassword());
         return encodedPassword.equals(user.getPassword());
     }
     public void setUserInfo(User user){
@@ -90,7 +90,7 @@ public class UserService {
         user.getCustomUserDetails().setEnabled(false);
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
-        logger.info("Saved new User " + user.getUsername());
+       // logger.info("Saved new User " + user.getUsername());
         userRepo.save(user);
 
         try {
