@@ -87,7 +87,6 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         user.setCustomUserDetails(new CustomUserDetails());
         user.setUserInfo(new UserInfo());
-        user.getCustomUserDetails().setEnabled(false);
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
        // logger.info("Saved new User " + user.getUsername());
