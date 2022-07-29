@@ -90,8 +90,11 @@ public class UserService {
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
        // logger.info("Saved new User " + user.getUsername());
-        userRepo.save(user);
-
+        try {
+            userRepo.save(user);
+        } catch(org.hibernate.exception.GenericJDBCException e){
+            logger.info(e.getMessage());
+        }
         try {
             sendVerifyCode(user);
         } catch (UnsupportedEncodingException e) {
