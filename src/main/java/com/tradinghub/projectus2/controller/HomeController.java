@@ -70,7 +70,7 @@ public class HomeController {
                 page = accountService.findPaginated(pageNo - 1, pageSize);
             }
         }
-        url="/home/home.html";
+        url="home/home.html";
         List<Account[]> list =list_helper.getList(page.getContent(),4);
         model.addAttribute("items",list);
         model.addAttribute("current_page",page.getNumber()+1);
