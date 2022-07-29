@@ -96,7 +96,7 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("userInfo",
                 new UserInfo());
-        return "user/User-Cabinet.html";
+        return "user/user-cabinet.html";
     }
 
     @GetMapping("/profile/user_info")
