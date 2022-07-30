@@ -3,6 +3,7 @@ package com.tradinghub.projectus2.model.dto.account;
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.model.enums.Currency;
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.user.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -30,7 +31,7 @@ public class AccountDTO {
     private String price;
     @NotBlank(message = "currency error")
     private String currency;
-    public Account build(){
+    public Account build(User user){
         Account account=new Account();
         account.setEmail(email);
         account.setPassword(password);
@@ -40,8 +41,10 @@ public class AccountDTO {
         account.getAccountInfo().setIncome(income);
         account.getAccountInfo().setFollowers(111);
         account.getAccountInfo().setUrl(url);
+        account.setUserInfo(user.getUserInfo());
         account.getAccountInfo().setActivationCode(activationCode);
         account.getAccountInfo().setPrice(price);
+
         account.getAccountInfo().setCurrency(Currency.valueOf(currency));
         return account;
     }

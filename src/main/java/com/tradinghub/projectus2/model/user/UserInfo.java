@@ -1,27 +1,42 @@
 package com.tradinghub.projectus2.model.user;
 
+import com.tradinghub.projectus2.model.account.Account;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name="userInfo")
+@Table(name = "userInfo")
 public class UserInfo {
     public UserInfo() {
     }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "number",unique=true)
+    @Column(name = "number", unique = true)
     private String number;
     @Column(name = "firstName")
     private String firstName;
     @Column(name = "lastName")
     private String lastName;
-    @Column(name = "vk",unique=true)
+    @Column(name = "vk", unique = true)
     private String vk;
-    @Column(name = "tg",unique=true)
+    @Column(name = "tg", unique = true)
     private String tg;
     @OneToOne(mappedBy = "userInfo")
     private User user;
+
+    @OneToMany(mappedBy = "userInfo")
+    private Set<Account> accounts;
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public String getNumber() {
         return number;

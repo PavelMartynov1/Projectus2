@@ -2,6 +2,7 @@ package com.tradinghub.projectus2.service;
 
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.Role;
+import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.user.CustomUserDetails;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
@@ -21,6 +22,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -31,7 +33,10 @@ public class UserService {
     UserRepository userRepo;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    public Set<Account> getUserAccounts(String username){
+        return userRepo.findByUsername(username).getUserInfo().getAccounts();
 
+    }
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
@@ -79,7 +84,7 @@ public class UserService {
     public boolean save(User user) {
         User userDB = userRepo.findByUsername(user.getUsername());
         if (userDB != null) {
-            logger.info("email is already taken");
+           // logger.info("email is already taken");
             throw new UserAlreadyExistException("Username is already taken");
         }
         List<Role> userRole = new ArrayList<>();
@@ -90,7 +95,7 @@ public class UserService {
         user.setUserInfo(new UserInfo());
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
-        logger.info("Trying to save new User " + user.getUsername());
+        //logger.info("Trying to save new User " + user.getUsername());
         userRepo.save(user);
         try {
             sendVerifyCode(user);

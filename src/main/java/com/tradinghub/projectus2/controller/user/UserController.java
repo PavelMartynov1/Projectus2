@@ -2,6 +2,7 @@ package com.tradinghub.projectus2.controller.user;
 
 import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
+import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.dto.account.AccountDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Set;
 
 @Controller
 public class UserController {
@@ -70,11 +72,12 @@ public class UserController {
      */
     @RequestMapping(value = "user/sell_item", method = RequestMethod.POST)
     public String add_item(@ModelAttribute("account") @Valid AccountDTO account,
-                           BindingResult bindingResult) {
+                           BindingResult bindingResult,Principal principal) {
         if(bindingResult.hasErrors()){
             return "user/sell_account.html";
         }
-        accountService.saveAccount(account.build());
+        User user=userService.findUserByUsername(principal.getName());
+        accountService.saveAccount(account.build(user));
         return "redirect:/profile";
     }
 
@@ -96,6 +99,8 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("userInfo",
                 new UserInfo());
+        Set<Account> userAccounts=userService.getUserAccounts(principal.getName());
+        model.addAttribute("accounts",userAccounts);
         return "user/user-cabinet.html";
     }
 

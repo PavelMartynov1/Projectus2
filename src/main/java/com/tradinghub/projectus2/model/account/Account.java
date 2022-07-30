@@ -1,27 +1,41 @@
 package com.tradinghub.projectus2.model.account;
 
 import com.tradinghub.projectus2.model.enums.AccountCategory;
+import com.tradinghub.projectus2.model.user.User;
+import com.tradinghub.projectus2.model.user.UserInfo;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name="account")
+@Table(name = "accounts")
 public class Account {
     public Account() {
-        this.accountInfo=new AccountInfo(this);
+        this.accountInfo = new AccountInfo(this);
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false,unique=true,name = "email")
+    @Column(nullable = false, unique = true, name = "email")
     private String email;
-    @Column(nullable = false,name = "password")
+    @Column(nullable = false, name = "password")
     private String password;
     @Enumerated(EnumType.STRING)
     private AccountCategory category;
     @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "accountInfo_id")
     private AccountInfo accountInfo;
+    @ManyToOne
+    @JoinColumn(name="userInfo_id")
+    private UserInfo userInfo;
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
 
     public Long getId() {
         return id;

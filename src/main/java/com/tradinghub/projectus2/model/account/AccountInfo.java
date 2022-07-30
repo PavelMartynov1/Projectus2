@@ -1,6 +1,8 @@
 package com.tradinghub.projectus2.model.account;
 
 import com.tradinghub.projectus2.model.enums.Currency;
+import com.tradinghub.projectus2.model.user.UserInfo;
+
 import javax.persistence.*;
 
 @Entity
@@ -34,6 +36,13 @@ public class AccountInfo {
     private Currency currency;
     @OneToOne(mappedBy = "accountInfo")
     private Account account;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getHeader() {
         return header;
