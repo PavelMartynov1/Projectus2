@@ -27,6 +27,15 @@ public class CustomUserDetails implements UserDetails {
     private boolean isEnabled=false;
 
     private boolean isCredentialsNonExpired=true;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
