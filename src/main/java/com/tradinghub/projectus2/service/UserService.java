@@ -79,6 +79,7 @@ public class UserService {
     public boolean save(User user) {
         User userDB = userRepo.findByUsername(user.getUsername());
         if (userDB != null) {
+            logger.info("email is already taken");
             throw new UserAlreadyExistException("Username is already taken");
         }
         List<Role> userRole = new ArrayList<>();
@@ -89,12 +90,8 @@ public class UserService {
         user.setUserInfo(new UserInfo());
         String randomString = RandomString.make(64);
         user.setVerifyCode(randomString);
-       // logger.info("Saved new User " + user.getUsername());
-        try {
-            userRepo.save(user);
-        } catch(org.hibernate.exception.GenericJDBCException e){
-            logger.info(e.getMessage());
-        }
+        logger.info("Trying to save new User " + user.getUsername());
+        userRepo.save(user);
         try {
             sendVerifyCode(user);
         } catch (UnsupportedEncodingException e) {
