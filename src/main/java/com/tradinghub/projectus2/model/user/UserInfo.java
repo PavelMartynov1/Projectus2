@@ -3,6 +3,7 @@ package com.tradinghub.projectus2.model.user;
 import com.tradinghub.projectus2.model.account.Account;
 
 import javax.persistence.*;
+import java.util.Base64;
 import java.util.Set;
 
 @Entity
@@ -29,6 +30,24 @@ public class UserInfo {
 
     @OneToMany(mappedBy = "userInfo")
     private Set<Account> accounts;
+
+    @Lob
+    @Basic(fetch=FetchType.LAZY)
+    private byte[] profilepic;
+
+    private String imageBase64;
+
+    public String getImageBase64() {
+        return Base64.getEncoder().encodeToString(profilepic);
+    }
+
+    public byte[] getProfilepic() {
+        return profilepic;
+    }
+
+    public void setProfilepic(byte[] profilepic) {
+        this.profilepic = profilepic;
+    }
 
     public Set<Account> getAccounts() {
         return accounts;

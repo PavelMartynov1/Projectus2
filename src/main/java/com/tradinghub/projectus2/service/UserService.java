@@ -16,9 +16,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +47,6 @@ public class UserService {
     }
     public boolean verify(String verifyCode) {
         User user = userRepo.findByCode(verifyCode);
-       // logger.info("starting process of verifying " + verifyCode);
-      //  logger.info("In DB user code " + user.getVerifyCode());
-
         user.setVerifyCode(null);
         user.getCustomUserDetails().setEnabled(true);
         userRepo.save(user);
@@ -81,10 +80,14 @@ public class UserService {
     public void setUserInfo(User user){
         userRepo.save(user);
     }
+    public void setUserPicture(String username, MultipartFile image) throws IOException {
+        User user=userRepo.findByUsername(username);
+        user.getUserInfo().setProfilepic(image.getBytes());
+        userRepo.save(user);
+    }
     public boolean save(User user) {
         User userDB = userRepo.findByUsername(user.getUsername());
         if (userDB != null) {
-           // logger.info("email is already taken");
             throw new UserAlreadyExistException("Username is already taken");
         }
         List<Role> userRole = new ArrayList<>();

@@ -25,9 +25,39 @@ public class Account {
     @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "accountInfo_id")
     private AccountInfo accountInfo;
+    @Column(name="withEmail",nullable=true)
+    private Boolean withEmail;
+    @Column(name="pin",nullable=true)
+    private Boolean pin;
+    @Column(name="colored",nullable=true)
+    private Boolean colored;
     @ManyToOne
     @JoinColumn(name="userInfo_id")
     private UserInfo userInfo;
+
+    public Boolean getWithEmail() {
+        return withEmail;
+    }
+
+    public void setWithEmail(Boolean withEmail) {
+        this.withEmail = withEmail;
+    }
+
+    public Boolean getPin() {
+        return pin;
+    }
+
+    public void setPin(Boolean pin) {
+        this.pin = pin;
+    }
+
+    public Boolean getColored() {
+        return colored;
+    }
+
+    public void setColored(Boolean colored) {
+        this.colored = colored;
+    }
 
     public UserInfo getUserInfo() {
         return userInfo;

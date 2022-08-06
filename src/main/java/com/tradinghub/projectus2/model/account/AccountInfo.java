@@ -1,6 +1,7 @@
 package com.tradinghub.projectus2.model.account;
 
 import com.tradinghub.projectus2.model.enums.Currency;
+import com.tradinghub.projectus2.model.enums.MediaType;
 import com.tradinghub.projectus2.model.user.UserInfo;
 
 import javax.persistence.*;
@@ -23,7 +24,7 @@ public class AccountInfo {
     @Column(nullable = false,name = "text")
     private String text;
     @Column(nullable = false,name = "income")
-    private String income;
+    private Integer income;
     @Column(nullable = false,name = "followers")
     private Integer followers;
     @Column(nullable = false,unique=true,name = "url")
@@ -31,11 +32,33 @@ public class AccountInfo {
     @Column(nullable = false,name = "activationCode")
     private String activationCode;
     @Column(nullable = false,name = "price")
-    private String price;
+    private Integer price;
+    @Column(name="expenses",nullable=true)
+    private Integer expenses;
+
     @Enumerated(EnumType.STRING)
     private Currency currency;
+    @Enumerated(EnumType.STRING)
+    private MediaType type;
     @OneToOne(mappedBy = "accountInfo")
     private Account account;
+
+    public Integer getExpenses() {
+        return expenses;
+    }
+
+    public void setExpenses(Integer expenses) {
+        this.expenses = expenses;
+    }
+
+    public MediaType getType() {
+        return type;
+    }
+
+    public void setType(MediaType type) {
+        this.type = type;
+    }
+
     public Long getId() {
         return id;
     }
@@ -60,11 +83,11 @@ public class AccountInfo {
         this.text = text;
     }
 
-    public String getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
@@ -92,11 +115,11 @@ public class AccountInfo {
         this.activationCode = activationCode;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

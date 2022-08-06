@@ -4,19 +4,17 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="">
+    <meta name="keywords" content="вип аккаунты">
     <meta name="description" content="">
-    <title>Home</title>
-    <link rel="stylesheet" th:href="@{/css/nicepage.css}" media="screen">
-    <link rel="stylesheet" th:href="@{/css/Home.css}" media="screen">
+    <title>EXCHANGE</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage/nicepage.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/home/home.css}" media="screen">
     <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
-    <script class="u-script" type="text/javascript" th:src="@{/js/nicepage.js}" defer=""></script>
+    <script class="u-script" type="text/javascript" th:src="@{/js/nicepage/nicepage.js}" defer=""></script>
     <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
 
     <link id="u-theme-google-font" rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
-    <link id="u-page-google-font" rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i">
 
 
     <script type="application/ld+json">{
@@ -33,119 +31,147 @@
     <meta name="theme-color" content="#478ac9">
     <meta name="twitter:site" content="@">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Home">
+    <meta name="twitter:title" content="EXCHANGE">
     <meta name="twitter:description" content="Site1">
-    <meta property="og:title" content="Home">
+    <meta property="og:title" content="EXCHANGE">
     <meta property="og:type" content="website">
 </head>
 <body class="u-body u-xl-mode" data-lang="ru">
-<header class="u-border-2 u-border-black u-clearfix u-gradient u-header u-header" id="sec-7d95">
-    <div class="u-container-style u-gradient u-group u-radius-40 u-shape-round u-group-1">
-        <div class="u-container-layout u-container-layout-1">
-            <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-                <div class="menu-collapse u-custom-font"
-                     style="font-size: 1.875rem; letter-spacing: 0px; font-family: pobeda-bold1;">
-                    <a class="u-button-style u-custom-active-color u-custom-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                       href="#">
-                        <svg class="u-svg-link" viewBox="0 0 24 24">
-                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
-                        </svg>
-                        <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-                            <g>
-                                <rect y="1" width="16" height="2"></rect>
-                                <rect y="7" width="16" height="2"></rect>
-                                <rect y="13" width="16" height="2"></rect>
-                            </g>
-                        </svg>
-                    </a>
-                </div>
-                <div class="u-custom-menu u-nav-container">
-                    <ul class="u-custom-font u-nav u-unstyled u-nav-1">
-                        <li class="u-nav-item"><a
-                                class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                th:href="@{/home}" style="padding: 26px 14px;">Home</a>
-                        </li>
-                        <li class="u-nav-item"><a
-                                class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                style="padding: 26px 14px;">Sales</a>
-                        </li>
-                        <li class="u-nav-item"><a
-                                class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                style="padding: 26px 14px;">Purchases</a>
-                        </li>
-                        <li class="u-nav-item"><a
-                                class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                style="padding: 26px 14px;">Mesenger</a>
-                        </li>
-                        <li class="u-nav-item"><a
-                                class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
-                                th:href="@{/profile}" style="padding: 26px 19px 26px 14px;">User Cabinet</a>
-                            <div class="u-nav-popup">
-                                <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
-                                                              th:href="@{user/sell_item}">Sell Account</a>
+<header th:fragment="header" class="u-border-2 u-border-black u-clearfix u-gradient u-header u-header" id="sec-7d95">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-gradient u-group u-radius-40 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <nav class="u-dropdown-icon u-menu u-menu-dropdown u-offcanvas u-menu-1">
+                    <div class="menu-collapse u-custom-font"
+                         style="font-size: 1.875rem; letter-spacing: 0px; font-family: pobeda-bold1;">
+                        <a class="u-button-style u-custom-active-color u-custom-color u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-text-active-color u-custom-text-color u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
+                           href="#">
+                            <svg class="u-svg-link" viewBox="0 0 24 24">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
+                            </svg>
+                            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px"
+                                 y="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+                                <g>
+                                    <rect y="1" width="16" height="2"></rect>
+                                    <rect y="7" width="16" height="2"></rect>
+                                    <rect y="13" width="16" height="2"></rect>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="u-custom-menu u-nav-container">
+                        <ul class="u-custom-font u-nav u-unstyled u-nav-1">
+                            <li class="u-nav-item"><a
+                                    class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
+                                    th:href="@{/home-test}" style="padding: 26px 6px;">EXCHANGE</a>
+                            </li>
+                            <li class="u-nav-item"><a
+                                    class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
+                                    th:href="@{/home-test}" style="padding: 26px 6px;">Home</a>
+                            </li>
+                            <li class="u-nav-item"><a
+                                    class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
+                                    style="padding: 26px 6px;">Sales</a>
+                            </li>
+                            <li class="u-nav-item"><a
+                                    class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
+                                    style="padding: 26px 6px;">Mesenger</a>
+                            </li>
+                            <li class="u-nav-item"><a
+                                    class="u-button-style u-nav-link u-text-active-white u-text-black u-text-hover-palette-2-base"
+                                    th:href="@{/profile}" style="padding: 26px 6px;">User Cabinet</a>
+                                <div class="u-nav-popup">
+                                    <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
+                                                                  th:href="@{/login}">войти</a>
+                                        </li>
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
+                                                                  th:href="@{/registration}">Регистрация</a>
+                                        </li>
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-white"
+                                                                  th:href="@{/inst/sell_account}">Sell Account</a>
+                                        </li>
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-white">My
+                                            Wallet</a>
+                                        </li>
+                                        <li class="u-nav-item"><a class="u-button-style u-nav-link u-white">выход</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="u-custom-menu u-nav-container-collapse">
+                        <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+                            <div class="u-inner-container-layout u-sidenav-overflow">
+                                <div class="u-menu-close"></div>
+                                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link" href="home.html">EXCHANGE</a>
                                     </li>
-                                    <li class="u-nav-item"><a class="u-button-style u-nav-link u-white">My Wallet</a>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                              th:href="@{/home-test}">Home</a>
+                                    </li>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link">Sales</a>
+                                    </li>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link">Mesenger</a>
+                                    </li>
+                                    <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                              th:href="@{/profile}">User Cabinet</a>
+                                        <div class="u-nav-popup">
+                                            <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
+                                                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                          th:href="@{/login}">войти</a>
+                                                </li>
+                                                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                          th:href="@{/registration}">Регистрация</a>
+                                                </li>
+                                                <li class="u-nav-item"><a class="u-button-style u-nav-link"
+                                                                          th:href="@{/inst/sell_account}">Sell Account</a>
+                                                </li>
+                                                <li class="u-nav-item"><a class="u-button-style u-nav-link">My
+                                                    Wallet</a>
+                                                </li>
+                                                <li class="u-nav-item"><a class="u-button-style u-nav-link">выход</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                    </ul>
-                </div>
-                <div class="u-custom-menu u-nav-container-collapse">
-                    <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-                        <div class="u-inner-container-layout u-sidenav-overflow">
-                            <div class="u-menu-close"></div>
-                            <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-3">
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/home}">Home</a>
-                                </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link">Sales</a>
-                                </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link">Purchases</a>
-                                </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link">Mesenger</a>
-                                </li>
-                                <li class="u-nav-item"><a class="u-button-style u-nav-link" th:href="@{/profile}">User
-                                    Cabinet</a>
-                                    <div class="u-nav-popup">
-                                        <ul class="u-h-spacing-20 u-nav u-unstyled u-v-spacing-10">
-                                            <li class="u-nav-item"><a class="u-button-style u-nav-link"
-                                                                      th:href="@{user/sell_item}">Sell Account</a>
-                                            </li>
-                                            <li class="u-nav-item"><a class="u-button-style u-nav-link">My Wallet</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
+                        <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
                     </div>
-                    <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
+        <a href="https://nicepage.com/c/table-html-templates" class="u-image u-logo u-image-1" data-image-width="1875"
+           data-image-height="382">
+            <img th:src="@{/images/home/testc2.png}" class="u-logo-image u-logo-image-1">
+        </a>
     </div>
-    <a href="https://nicepage.com/c/table-html-templates" class="u-image u-logo u-image-1" data-image-width="1875"
-       data-image-height="382">
-        <img th:src="@{/images/testc2.png}" class="u-logo-image u-logo-image-1">
-    </a></header>
-<section class="u-clearfix u-image u-section-1" id="sec-3071" data-image-width="1080" data-image-height="1080">
+</header>
+<section class="u-clearfix u-gradient u-section-1" id="sec-eed1">
     <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
-            <div class="u-container-layout u-valign-top u-container-layout-1">
+            <div class="u-container-layout u-container-layout-1">
                 <div class="u-form u-form-1">
-                    <form th:action="@{/home}" method="GET"
+                    <form th:action="@{/home-test}" method="GET"
                           class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form"
                           source="custom" name="form" style="padding: 10px;" redirect="true">
                         <div class="u-form-group u-form-select u-form-group-1">
-                            <label for="select-01fd" class="u-label u-text-body-alt-color">Категория</label>
+                            <label for="select-669f" class="u-custom-font u-font-courier-new u-label">Социальные
+                                сети</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-01fd" name="category"
-                                        class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
+                                <select id="select-669f" name="category"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
                                     <option disabled selected value>Choose category</option>
-                                    <option value="'fb'">Facebook</option>
-                                    <option value="'inst'">Instagram</option>
+                                    <option value="all">All</option>
+                                    <option value="ВКонтакте">ВКонтакте</option>
+                                    <option value="Facebook">Facebook</option>
+                                    <option value="Instagram">Instagram</option>
+                                    <option value="Telegram">Telegram</option>
+                                    <option value="TikTok">TikTok</option>
+                                    <option value="YouTube">YouTube</option>
                                 </select>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
                                      class="u-caret">
@@ -153,14 +179,59 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="u-form-group u-form-select u-form-group-2">
-                            <label for="select-5907" class="u-label u-text-body-alt-color">Цена</label>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-2">
+                            <label for="text-6105" class="u-custom-font u-font-courier-new u-label">Подписчики,
+                                чел</label>
+                            <input name="followersFrom" type="text" placeholder="от" id="text-6105"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-3">
+                            <label for="text-75f3"
+                                   class="u-custom-font u-font-courier-new u-form-control-hidden u-label"></label>
+                            <input  name="followersUp" type="text" placeholder="до" id="text-75f3"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-4">
+                            <label for="text-a289" class="u-custom-font u-font-courier-new u-label">Цена</label>
+                            <input name="priceFrom" type="text" placeholder="от" id="text-a289"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-5">
+                            <label for="text-39f5"
+                                   class="u-custom-font u-font-courier-new u-form-control-hidden u-label"></label>
+                            <input name="priceUp" type="text" placeholder="до" id="text-39f5"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-select u-form-group-6">
+                            <label for="select-3c91" class="u-custom-font u-font-courier-new u-label">Тематика</label>
                             <div class="u-form-select-wrapper">
-                                <select id="select-5907" name="price"
-                                        class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option disabled selected value>Sort by price</option>
-                                    <option value="ASC">ASC</option>
-                                    <option value="DSC">DSC</option>
+                                <select id="select-3c91" name="mediaType"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                                    <option disabled selected value>MediaType</option>
+                                    <option value="all">все</option>
+                                    <option value="автомобили">автомобили</option>
+                                    <option value="бизнес">бизнес</option>
+                                    <option value="мода">мода</option>
+                                    <option value="музыка">музыка</option>
+                                    <option value="игры">игры</option>
+                                    <option value="животные">животные</option>
+                                    <option value="юмор">юмор</option>
+                                    <option value="мебли">мебли</option>
+                                    <option value="продажа">продажа</option>
+                                    <option value="кино">кино</option>
+                                    <option value="культура">культура</option>
+                                    <option value="недвижимость">недвижимость</option>
+                                    <option value="машины">машины</option>
+                                    <option value="отдых и еда">отдых и еда</option>
+                                    <option value="робота">робота</option>
+                                    <option value="реклама">реклама</option>
+                                    <option value="сми">сми</option>
+                                    <option value="спорт">спорт</option>
+                                    <option value="туризм">туризм</option>
+                                    <option value="финансы">финансы</option>
+                                    <option value="хобби">хобби</option>
+                                    <option value="еротика">еротика</option>
+                                    <option value="факты">факты</option>
                                 </select>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
                                      class="u-caret">
@@ -168,180 +239,196 @@
                                 </svg>
                             </div>
                         </div>
-                        <div class="u-form-group u-form-select u-form-group-3">
-                            <label for="select-2f20" class="u-label u-text-body-alt-color">Количество
-                                подпрыщиков</label>
-                            <div class="u-form-select-wrapper">
-                                <select id="select-2f20" name="followers"
-                                        class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option disabled selected value>Sort by followers</option>
-                                    <option value="ASC">ASC</option>
-                                    <option value="DSC">DSC</option>
-                                </select>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
-                                     class="u-caret">
-                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="u-form-group u-form-select u-form-group-4">
-                            <label for="select-c633" class="u-label u-text-body-alt-color">Товаров на странице</label>
-                            <div class="u-form-select-wrapper">
-                                <select id="select-c633" name="pageSize"
-                                        class="u-border-3 u-border-palette-4-dark-2 u-custom-font u-font-merriweather u-input u-input-rectangle u-radius-20 u-text-body-alt-color">
-                                    <option value="2">2</option>
-                                    <option value="10">10</option>
-                                    <option value="25">25</option>
-                                </select>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
-                                     class="u-caret">
-                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="u-align-center u-form-group u-form-submit">
-                            <a th:href="@{/home}"
-                               class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-font-merriweather u-radius-20 u-btn-1">Отправить</a>
+                        <div class="u-align-right u-form-group u-form-submit">
+                            <a href="#"
+                               class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-20 u-btn-1">Поиск<br>
+                            </a>
                             <input type="submit" value="submit" class="u-form-control-hidden">
                         </div>
-                        <input type="hidden" value="" name="recaptchaResponse">
                     </form>
                 </div>
             </div>
-        </div><!--products--><!--products_options_json--><!--{"type":"Recent","source":"","tags":"","count":""}-->
-        <!--/products_options_json-->
-        <div th:each="item : ${items}" class="u-expanded-width u-pagination-center u-products u-products-1">
-            <div  class="u-repeater u-repeater-1"><!--product_item-->
-                <div th:if="${item[0]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-1">
-                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-2">
-                        <!--product_image-->
-                        <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-1"
-                             th:src="@{/images/5.png}"><!--/product_image--><!--product_title-->
-                        <h4 class="u-align-center u-product-control u-text u-text-1">
-                            <a th:text="${item[0].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
-                                <!--/product_title_content--></a>
-                        </h4><!--/product_title--><!--product_price-->
-                        <div class="u-product-control u-product-price u-product-price-1">
-                            <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                                <div class="u-hide-price u-old-price"><!--product_old_price_content-->
-                                    <!--/product_old_price_content--></div><!--/product_old_price-->
-                                <!--product_regular_price-->
-                                <div th:text="${item[0].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
-                                    <!--product_regular_price_content--><!--/product_regular_price_content--></div>
-                                <!--/product_regular_price-->
-                            </div>
-                        </div><!--/product_price--><!--product_button--><!--options_json-->
-                        <!--{"clickType":"go-to-page","content":"КуПИТЬ"}--><!--/options_json-->
-                        <a th:href="@{${item[0].category} + '/item?id='+ ${item[0].id}}"
-                           class="u-border-active-none u-border-hover-none u-btn u-btn-rectangle u-button-style u-custom-font u-font-merriweather u-none u-product-control u-text-body-alt-color u-btn-2">
-                            <!--product_button_content-->КуПИТЬ<!--/product_button_content--></a><!--/product_button-->
-                    </div>
-                </div><!--/product_item--><!--product_item-->
-                <div th:if="${item[1]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-2">
-                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-3">
-                        <!--product_image-->
-                        <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-2"
-                             th:src="@{/images/6.png}"><!--/product_image--><!--product_title-->
-                        <h4 class="u-align-center u-product-control u-text u-text-2">
-                            <a th:text="${item[1].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
-                                <!--/product_title_content--></a>
-                        </h4><!--/product_title--><!--product_price-->
-                        <div class="u-product-control u-product-price u-product-price-2">
-                            <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                                <div class="u-hide-price u-old-price"><!--product_old_price_content-->
-                                    <!--/product_old_price_content--></div><!--/product_old_price-->
-                                <!--product_regular_price-->
-                                <div  th:text="${item[1].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
-                                    <!--product_regular_price_content--><!--/product_regular_price_content--></div>
-                                <!--/product_regular_price-->
-                            </div>
-                        </div><!--/product_price--><!--product_button--><!--options_json-->
-                        <!--{"clickType":"go-to-page","content":"КУПИТЬ"}--><!--/options_json-->
-                        <a th:href="@{${item[1].category} + '/item?id='+ ${item[1].id}}"
-                           class="u-border-active-none u-border-hover-none u-btn u-btn-rectangle u-button-style u-custom-font u-font-merriweather u-none u-product-control u-text-body-alt-color u-btn-3">
-                            <!--product_button_content-->КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
-                    </div>
-                </div><!--/product_item--><!--product_item-->
-                <div th:if="${item[2]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-3">
-                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
-                        <!--product_image-->
-                        <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-3"
-                             th:src="@{/images/7.png}"><!--/product_image--><!--product_title-->
-                        <h4 class="u-align-center u-product-control u-text u-text-3">
-                            <a th:text="${item[2].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
-                                <!--/product_title_content--></a>
-                        </h4><!--/product_title--><!--product_price-->
-                        <div class="u-product-control u-product-price u-product-price-3">
-                            <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                                <div class="u-hide-price u-old-price"><!--product_old_price_content-->
-                                    <!--/product_old_price_content--></div><!--/product_old_price-->
-                                <!--product_regular_price-->
-                                <div th:text="${item[2].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
-                                    <!--product_regular_price_content--><!--/product_regular_price_content--></div>
-                                <!--/product_regular_price-->
-                            </div>
-                        </div><!--/product_price--><!--product_button--><!--options_json-->
-                        <!--{"clickType":"go-to-page","content":"КУПИТЬ"}--><!--/options_json-->
-                        <a th:href="@{${item[2].category} + '/item?id='+ ${item[2].id}}"
-                           class="u-border-active-none u-border-hover-none u-btn u-btn-rectangle u-button-style u-custom-font u-font-merriweather u-none u-product-control u-text-body-alt-color u-btn-4">
-                            <!--product_button_content-->КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
-                    </div>
-                </div><!--/product_item--><!--product_item-->
-                <div th:if="${item[3]!=null }" class="u-align-center u-container-style u-gradient u-products-item u-repeater-item u-repeater-item-4">
-                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5">
-                        <!--product_image-->
-                        <img alt="" class="u-expanded-width u-image u-image-default u-product-control u-image-4"
-                             th:src="@{/images/5.png}"><!--/product_image--><!--product_title-->
-                        <h4 class="u-align-center u-product-control u-text u-text-4">
-                            <a th:text="${item[3].accountInfo.header}" class="u-product-title-link" href="#"><!--product_title_content-->
-                                <!--/product_title_content--></a>
-                        </h4><!--/product_title--><!--product_price-->
-                        <div class="u-product-control u-product-price u-product-price-4">
-                            <div class="u-price-wrapper u-spacing-10"><!--product_old_price-->
-                                <div class="u-hide-price u-old-price"><!--product_old_price_content-->
-                                    <!--/product_old_price_content--></div><!--/product_old_price-->
-                                <!--product_regular_price-->
-                                <div th:text="${item[3].accountInfo.price}" class="u-price" style="font-size: 1.25rem; font-weight: 600;">
-                                    <!--product_regular_price_content--><!--/product_regular_price_content--></div>
-                                <!--/product_regular_price-->
-                            </div>
-                        </div><!--/product_price--><!--product_button--><!--options_json-->
-                        <!--{"clickType":"go-to-page","content":"КУПИТЬ"}--><!--/options_json-->
-                        <a th:href="@{${item[3].category} + '/item?id='+ ${item[3].id}}"
-                           class="u-border-active-none u-border-hover-none u-btn u-btn-rectangle u-button-style u-custom-font u-font-merriweather u-none u-product-control u-text-body-alt-color u-btn-5">
-                            <!--product_button_content-->КУПИТЬ<!--/product_button_content--></a><!--/product_button-->
-                    </div>
-                </div><!--/product_item-->
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-image u-section-2" id="sec-0db7" data-image-width="1920" data-image-height="1080">
+    <div th:if="${vip != null}">
+    <div th:each="acc:${vip}"  class="u-align-left u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-custom-font u-font-courier-new u-text u-text-default u-text-1">вип аккаунты</h2>
+        <div th:if="${acc[0]!=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-1"
+                     th:src="@{/images/home/business.png}" alt="" data-image-width="500" data-image-height="500">
+                <p th:text="${acc[0].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-2"></p>
+                <h6 th:text="${acc[0].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-3"></h6>
+                <p th:text="${acc[0].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-4"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                <p th:text="${acc[0].accountInfo.followers}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-5"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-6">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-1">купить</a>
+                <h5 th:text="${acc[0].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-7"></h5>
             </div>
-            <div class="u-list-control"></div>
-        </div><!--/products-->
-        <div class="u-layout-grid u-list u-list-1">
-            <div class="u-repeater u-repeater-2">
-                <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle">
-                    <div class="u-container-layout u-similar-container u-container-layout-6">
-                        <a th:if="${current_page!=1}" th:href="@{'/home?pageNo=1&pageSize=' +${pageSize}}"
-                           class="u-active-none u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-none u-none u-text-body-alt-color u-btn-6">Начало</a>
+        </div>
+        <div th:if="${acc[1]!=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-2">
+            <div class="u-container-layout u-container-layout-2">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-2"
+                     th:src="@{/images/home/business5.png}" alt="" data-image-width="500" data-image-height="500">
+                <p th:text="${acc[1].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-8"></p>
+                <h6 th:text="${acc[1].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-9"></h6>
+                <p th:text="${acc[1].accountInfo.text}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-10"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                <p th:text="${acc[1].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-11"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-12">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-2">купить</a>
+                <h5 th:text="${acc[1].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-13"></h5>
+            </div>
+        </div>
+        <div th:if="${acc[2]!=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-3">
+            <div class="u-container-layout u-container-layout-3">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-3"
+                     th:src="@{/images/home/businessaccount.png}" alt="" data-image-width="200" data-image-height="200">
+                <p th:text="${acc[2].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-14"></p>
+                <h6 th:text="${acc[2].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-15"></h6>
+                <p th:text="${acc[2].accountInfo.text}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-16"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"></div>
+                <p th:text="${acc[2].accountInfo.followers}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-17"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-18">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-3">купить</a>
+                <h5 th:text="${acc[2].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-19"></h5>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+<section th:if="${accounts!=null}" class="u-clearfix u-image u-section-3" id="sec-8138" data-image-width="1920" data-image-height="1080">
+    <div th:each="account : ${accounts}" class="u-clearfix u-sheet u-sheet-1">
+        <div th:if="${account[0] !=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-1"
+                     th:src="@{/images/home/business3.png}" alt="" data-image-width="500" data-image-height="500">
+                <p th:text="${account[0].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-1"> </p>
+                <h6 th:text="${account[0].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-2"></h6>
+                <p th:text="${account[0].accountInfo.text}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-3"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                <p th:text="${account[0].accountInfo.followers}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-4"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-5">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-1">купить</a>
+                <h5 th:text="${account[0].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-6"></h5>
+            </div>
+        </div>
+        <div th:if="${account[1] !=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-2">
+            <div class="u-container-layout u-container-layout-2">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-2"
+                     th:src="@{/images/home/business4.png}" alt="" data-image-width="500" data-image-height="500">
+                <p th:text="${account[1].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-7"></p>
+                <h6 th:text="${account[1].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-8"> </h6>
+                <p th:text="${account[1].accountInfo.text}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-9"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                <p th:text="${account[1].accountInfo.followers}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-10"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-11">Подписчики</p>
+                <h5 th:text="${account[1].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-12"></h5>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-2">купить</a>
+            </div>
+        </div>
+        <div th:if="${account[2] !=null}" class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-3">
+            <div class="u-container-layout u-container-layout-3">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-3"
+                     th:src="@{/images/home/business6.png}" alt="" data-image-width="500" data-image-height="500">
+                <p th:text="${account[2].accountInfo.type}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-13"></p>
+                <h6 th:text="${account[2].accountInfo.header}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-14"> </h6>
+                <p th:text="${account[2].accountInfo.text}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-15"></p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"></div>
+                <p th:text="${account[2].accountInfo.followers}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-16"></p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-17">Подписчики</p>
+                <h5 th:text="${account[2].accountInfo.price}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-18"></h5>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-3">купить</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="u-clearfix u-image u-section-4" id="sec-8d8f" data-image-width="1450" data-image-height="250">
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+</section>
+<section class="u-clearfix u-image u-section-5" id="sec-2217" data-image-width="1920" data-image-height="1080">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-1"
+                     th:src="@{/images/home/business3.png}" alt="" data-image-width="500" data-image-height="500">
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-1">тематика</p>
+                <h6 class="u-custom-font u-font-courier-new u-text u-text-default u-text-2">имя аккаунта</h6>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-3">описание</p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-1"></div>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-4">122,028&nbsp;чел.</p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-5">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-1">купить</a>
+                <h5 class="u-custom-font u-font-courier-new u-text u-text-default u-text-6">2000 грн</h5>
+            </div>
+        </div>
+        <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-2">
+            <div class="u-container-layout u-container-layout-2">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-2"
+                     th:src="@{/images/home/business3.png}" alt="" data-image-width="500" data-image-height="500">
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-7">тематика</p>
+                <h6 class="u-custom-font u-font-courier-new u-text u-text-default u-text-8">имя аккаунта</h6>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-9">описание</p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-2"></div>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-10">122,028&nbsp;чел.</p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-11">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-2">купить</a>
+                <h5 class="u-custom-font u-font-courier-new u-text u-text-default u-text-12">2000 грн</h5>
+            </div>
+        </div>
+        <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-3">
+            <div class="u-container-layout u-container-layout-3">
+                <img class="u-image u-image-round u-preserve-proportions u-radius-10 u-image-3"
+                     th:src="@{/images/home/business3.png}" alt="" data-image-width="500" data-image-height="500">
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-13">тематика</p>
+                <h6 class="u-custom-font u-font-courier-new u-text u-text-default u-text-14">имя аккаунта</h6>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-15">описание</p>
+                <div class="u-border-1 u-border-grey-dark-1 u-line u-line-horizontal u-line-3"></div>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-16">122,028&nbsp;чел.</p>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-17">Подписчики</p>
+                <a href="https://nicepage.com/c/video-website-templates"
+                   class="u-black u-border-none u-btn u-btn-round u-button-style u-radius-20 u-btn-3">купить</a>
+                <h5 class="u-custom-font u-font-courier-new u-text u-text-default u-text-18">2000 грн</h5>
+            </div>
+        </div>
+        <div th:fragment="pagination" class="u-list u-list-1">
+            <div class="u-repeater u-repeater-1">
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-4">
+                        <a th:if="${current_page!=1}" th:href="@{'/home-test?pageNo=1&pageSize=' +${pageSize}}"
+                           class="u-active-none u-border-2 u-border-palette-2-light-2 u-btn u-button-style u-custom-item u-hover-none u-none u-btn-4">Начало</a>
                     </div>
                     <span th:unless="${current_page!=1}" class="u-active-none u-border-2 u-border-palette-1-base u-btn
                             u-button-style u-custom-item u-hover-none u-none u-btn-6"
                     >Начало</span>
                 </div>
-                <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle">
-                    <div class="u-container-layout u-similar-container u-container-layout-7">
-                         <a th:if="${current_page!=1}" th:href="@{'/home?pageNo='
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-5">
+                        <a th:if="${current_page!=1}" th:href="@{'/home-test?pageNo='
                         + ${current_page-1} +
-    '&pageSize=' +${pageSize}}"
-                           class="u-active-none u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-none u-none u-text-body-alt-color u-btn-7">Назад</a>
+                        '&pageSize=' +${pageSize}}"
+                        class="u-active-none u-border-2 u-border-palette-2-light-2 u-btn u-button-style u-custom-item u-hover-none u-none u-btn-5">Назад</a>
                     </div>
                     <span th:unless="${current_page!=1}" class="u-active-none u-border-2 u-border-palette
                            -1-base u-btn u-button-style u-custom-item u-hov
                            er-none u-none u-btn-7" >Назад</span>
                 </div>
-                <div class="u-container-style u-list-item u-repeater-item u-shape-rectangle">
-                    <div class="u-container-layout u-similar-container u-container-layout-8">
-                        <a th:if="${current_page < totalPages}" th:href="@{'/home?pageNo=' + ${current_page + 1}+
+                <div class="u-container-style u-list-item u-repeater-item">
+                    <div class="u-container-layout u-similar-container u-valign-top u-container-layout-6">
+                        <a th:if="${current_page < totalPages}" th:href="@{'/home-test?pageNo=' + ${current_page + 1}+
     '&pageSize=' +${pageSize}}"
-                           class="u-active-none u-border-2 u-border-white u-btn u-button-style u-custom-item u-hover-none u-none u-btn-8">Вперед</a>
+                           class="u-active-none u-border-2 u-border-palette-2-light-2 u-btn u-button-style u-custom-item u-hover-none u-none u-btn-6">Вперед</a>
                     </div>
                     <span th:unless ="${current_page < totalPages}"  class="u-active-none u-border-2 u-border-palette-1-base
                             u-btn u-button-style u-custom-item u-hover-none u-none
@@ -353,11 +440,11 @@
 </section>
 
 
-<footer class="u-align-center u-clearfix u-footer u-gradient u-footer" id="sec-fe06">
+<footer th:fragment="footer" class="u-align-center u-clearfix u-footer u-gradient u-footer" id="sec-fe06">
     <div class="u-align-left u-clearfix u-sheet u-sheet-1">
         <a href="https://nicepage.online" class="u-image u-logo u-image-1" data-image-width="1875"
            data-image-height="382">
-            <img th:src="@{/images/testc2.png}" class="u-logo-image u-logo-image-1">
+            <img th:src="@{/images/home/testc2.png}" class="u-logo-image u-logo-image-1">
         </a>
         <div class="u-social-icons u-spacing-10 u-social-icons-1">
             <a class="u-social-url" title="facebook" target="_blank" href="https://facebook.com/name"><span
@@ -418,14 +505,14 @@ c5.5,0,9.9,4.5,9.9,9.9V73.3z"></path></svg></span>
     </div>
 </footer>
 <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-        <span>Website Templates</span>
+    <a class="u-link" href="https://nicepage.com/web-design" target="_blank">
+        <span>Best Web Design</span>
     </a>
     <p class="u-text">
         <span>created with</span>
     </p>
-    <a class="u-link" href="" target="_blank">
-        <span>Website Builder Software</span>
+    <a class="u-link" href="https://nicepage.com/static-site-generator" target="_blank">
+        <span>Static Site Generators</span>
     </a>.
 </section>
 

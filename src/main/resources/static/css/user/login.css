@@ -1,0 +1,134 @@
+ .u-section-1 {
+  background-image: url("17.png");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 1237px;
+}
+
+.u-section-1 .u-group-1 {
+  width: 800px;
+  min-height: 602px;
+  background-image: linear-gradient(#db545a, #292d33);
+  margin: 126px auto 60px;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 30px 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 3rem;
+  margin: 7px auto 0;
+}
+
+.u-section-1 .u-line-1 {
+  margin-top: 25px;
+  margin-bottom: 0;
+  transform-origin: left center 0px;
+}
+
+.u-section-1 .u-form-1 {
+  height: 288px;
+  width: 570px;
+  margin: 25px auto 0;
+}
+
+.u-section-1 .u-form-group-1 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-1 {
+  font-weight: 700;
+}
+
+.u-section-1 .u-form-group-2 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-2 {
+  font-weight: 700;
+}
+
+.u-section-1 .u-form-group-3 {
+  margin-left: 0;
+}
+
+.u-section-1 .u-label-3 {
+  font-weight: 700;
+}
+
+.u-section-1 .u-btn-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-btn-2 {
+  margin: -53px auto 0 126px;
+  padding: 0;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 1020px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    border-style: none none solid;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 781px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 720px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-left: 46px;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 586px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 540px;
+  }
+
+  .u-section-1 .u-btn-2 {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 369px;
+  }
+
+  .u-section-1 .u-group-1 {
+    width: 340px;
+  }
+
+  .u-section-1 .u-text-1 {
+    font-size: 1.5rem;
+  }
+
+  .u-section-1 .u-form-1 {
+    width: 340px;
+  }
+}@font-face {
+  font-family: 'pobeda-bold1';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pobeda-bold1.ttf);
+}

@@ -4,13 +4,14 @@ public enum AccountCategory {
     inst("Instagram"),
     tg("Telegram"),
     fb("Facebook"),
-    ytb("YouTube");
-    private final String category;
+    ytb("YouTube"),
+    category("Category");
+    private final String AccountCategory;
     AccountCategory(String category){
-        this.category=category;
+        this.AccountCategory=category;
     }
 
     public String getCategory() {
-        return category;
+        return AccountCategory;
     }
 }

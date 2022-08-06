@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html style="font-size: 16px;" lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Войти">
+    <meta name="description" content="">
+    <title>войти</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage/nicepage.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/user/login.css}" media="screen">
+    <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
+    <script class="u-script" type="text/javascript" th:src="@{/js/nicepage/nicepage.js}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Site1",
+        "logo": "images/testc2.svg",
+        "sameAs": [
+            "https://facebook.com/name",
+            "https://twitter.com/name",
+            "https://instagram.com/name"
+        ]
+    }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="войти">
+    <meta name="twitter:description" content="Site1">
+    <meta property="og:title" content="войти">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="ru">
+<header th:insert="~{home/home.html :: header}">
+
+</header>
+<section class="u-clearfix u-image u-section-1" id="sec-eb48" data-image-width="1920" data-image-height="1080">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <h2 class="u-custom-font u-font-courier-new u-text u-text-default u-text-1">Войти</h2>
+                <div class="u-border-3 u-border-grey-dark-1 u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                <div class="u-form u-form-1">
+                    <form th:action="@{/login}" method="POST"
+                          class="u-clearfix u-form-custom-backend u-form-spacing-10 u-form-vertical u-inner-form"
+                          source="custom" name="form" style="padding: 10px;" redirect="true">
+                        <div class="u-form-group u-form-group-1">
+                            <div th:if="${param.error}" class="alert alert-error">
+                                Invalid username and password.
+                            </div>
+                            <label for="text-6e97"
+                                   class="u-custom-font u-font-courier-new u-label u-label-1">Логин</label>
+                            <input type="text" placeholder="" id="text-6e97" name="username"
+                                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-group-2">
+                            <label for="text-a6e8"
+                                   class="u-custom-font u-font-courier-new u-label u-label-2">пароль</label>
+                            <input type="text" placeholder="" id="text-a6e8" name="password"
+                                   class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-checkbox u-form-group u-form-group-3">
+                            <input type="checkbox" id="checkbox-b125" name="checkbox" value="On">
+                            <label for="checkbox-b125" class="u-custom-font u-font-courier-new u-label u-label-3">Запомнить</label>
+                        </div>
+                        <div class="u-align-right u-form-group u-form-submit">
+                            <a href="#"
+                               class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-radius-20 u-btn-1">Войти<br>
+                            </a>
+                            <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                    </form>
+                </div>
+                <a
+                   class="u-border-active-white u-border-hover-black u-border-none u-btn u-button-style u-none u-text-white u-btn-2">Восстановить
+                    пароль</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer th:insert="~{home/home.html :: footer}">
+
+</footer>
+<section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/html-templates" target="_blank">
+        <span>HTML Template</span>
+    </a>
+    <p class="u-text">
+        <span>created with</span>
+    </p>
+    <a class="u-link" href="https://nicepage.me" target="_blank">
+        <span>Website Builder</span>
+    </a>.
+</section>
+
+</body>
+</html>

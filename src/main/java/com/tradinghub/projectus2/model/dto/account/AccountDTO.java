@@ -3,10 +3,12 @@ package com.tradinghub.projectus2.model.dto.account;
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.model.enums.Currency;
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.enums.MediaType;
 import com.tradinghub.projectus2.model.user.User;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Null;
 
 public class AccountDTO {
     @NotBlank(message = "email error")
@@ -16,36 +18,42 @@ public class AccountDTO {
     private String password;
     @NotBlank(message = "category error")
     private String category;
+    @NotBlank(message = "Please,choose your category")
+    private String mediaType;
+    private Integer expenses;
     @NotBlank(message = "header error")
     private String header;
     @NotBlank(message = "text error")
     private String text;
-    private String income;
+    @NotBlank(message="income error")
+    private Integer income;
     //@NotBlank(message = "followers error")
-    private String followers;
+    private Integer followers;
     @NotBlank(message = "url error")
     private String url;
     @NotBlank(message = "activationCode error")
     private String activationCode;
     @NotBlank(message = "price error")
-    private String price;
-    @NotBlank(message = "currency error")
+    private Integer price;
+    //@NotBlank(message = "currency error")
+    @Null
     private String currency;
     public Account build(User user){
         Account account=new Account();
         account.setEmail(email);
         account.setPassword(password);
         account.setCategory(AccountCategory.valueOf(category));
+        account.getAccountInfo().setType(MediaType.valueOf(mediaType));
         account.getAccountInfo().setHeader(header);
         account.getAccountInfo().setText(text);
         account.getAccountInfo().setIncome(income);
         account.getAccountInfo().setFollowers(111);
         account.getAccountInfo().setUrl(url);
+        account.getAccountInfo().setExpenses(expenses);
         account.setUserInfo(user.getUserInfo());
         account.getAccountInfo().setActivationCode(activationCode);
         account.getAccountInfo().setPrice(price);
-
-        account.getAccountInfo().setCurrency(Currency.valueOf(currency));
+        account.getAccountInfo().setCurrency(Currency.grn);
         return account;
     }
     public String getEmail() {
@@ -88,19 +96,19 @@ public class AccountDTO {
         this.text = text;
     }
 
-    public String getIncome() {
+    public Integer getIncome() {
         return income;
     }
 
-    public void setIncome(String income) {
+    public void setIncome(Integer income) {
         this.income = income;
     }
 
-    public String getFollowers() {
+    public Integer getFollowers() {
         return followers;
     }
 
-    public void setFollowers(String followers) {
+    public void setFollowers(Integer followers) {
         this.followers = followers;
     }
 
@@ -120,11 +128,11 @@ public class AccountDTO {
         this.activationCode = activationCode;
     }
 
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 

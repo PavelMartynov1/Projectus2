@@ -4,6 +4,7 @@ import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.dto.account.AccountDTO;
+import com.tradinghub.projectus2.model.dto.user.UserDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.service.AccountService;
@@ -17,9 +18,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.Set;
 
@@ -31,15 +34,15 @@ public class UserController {
     @Autowired
     private UserInfoService userInfoService;
     @Autowired
-    private AccountService accountService;
+    AccountService accountService;
 
     /*
      Serves user registration template
      */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String getRegPage(Model model) {
-        model.addAttribute("user", new User());
-        return "user/registration";
+        model.addAttribute("userDTO", new UserDTO());
+        return "user/registration-test";
     }
 
     /*
@@ -47,15 +50,23 @@ public class UserController {
      */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public String registerNewUser(@ModelAttribute("user")
-                                  @Valid User userForm,
+                                  @Valid UserDTO userForm,
                                   BindingResult result, Model model) {
+
+        if(result.hasErrors()){
+            return "user/registration-test";
+        }
         try {
-            userService.save(userForm);
+            userService.save(userForm.build());
         } catch (UserAlreadyExistException e) {
             model.addAttribute("Username_is_taken", e);
             return "redirect:/login";
         }
         return "redirect:/login";
+    }
+    @RequestMapping(value = "/login")
+    public String getLoginPage(){
+        return "user/login.html";
     }
 
     /*
@@ -63,7 +74,7 @@ public class UserController {
      */
     @RequestMapping(value = "user/sell_item", method = RequestMethod.GET)
     public String getSellItemPage(Model model) {
-        model.addAttribute("account",new AccountDTO());
+        model.addAttribute("account", new AccountDTO());
         return "user/sell_account.html";
     }
 
@@ -72,23 +83,34 @@ public class UserController {
      */
     @RequestMapping(value = "user/sell_item", method = RequestMethod.POST)
     public String add_item(@ModelAttribute("account") @Valid AccountDTO account,
-                           BindingResult bindingResult,Principal principal) {
-        if(bindingResult.hasErrors()){
+                           BindingResult bindingResult, Principal principal) {
+        if (bindingResult.hasErrors()) {
             return "user/sell_account.html";
         }
-        User user=userService.findUserByUsername(principal.getName());
+        User user = userService.findUserByUsername(principal.getName());
         accountService.saveAccount(account.build(user));
         return "redirect:/profile";
     }
 
+    @PostMapping("user/image")
+    public String setProfilePic(@RequestParam("image") MultipartFile image,
+                                Principal principal) {
+        try {
+            userService.setUserPicture(principal.getName(),image);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/profile";
+
+    }
 
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
         if (userService.verify(code)) {
-           // logger.info("User verified");
+            // logger.info("User verified");
             return "verify_success";
         } else {
-           // logger.info("verify_fail");
+            // logger.info("verify_fail");
             return "verify_fail";
         }
     }
@@ -99,8 +121,9 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("userInfo",
                 new UserInfo());
-        Set<Account> userAccounts=userService.getUserAccounts(principal.getName());
-        model.addAttribute("accounts",userAccounts);
+        Set<Account> userAccounts = userService.getUserAccounts(principal.getName());
+        model.addAttribute("accounts", userAccounts);
+
         return "user/user-cabinet.html";
     }
 
@@ -121,7 +144,7 @@ public class UserController {
                     (principal.getName(), password, newPassword);
         } catch (PasswordException e) {
             model.addAttribute("password", e.getMessage());
-           // logger.info("passwordException");
+            // logger.info("passwordException");
         }
         return "redirect:/login";
     }
@@ -145,15 +168,9 @@ public class UserController {
         return "redirect:/profile";
     }
 
-    @GetMapping("/access_denied")
-    public String accessDenied() {
-        return "access_denied.html";
-    }
-
-
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getIndexPage() {
-        return "redirect:/home";
+        return "redirect:/home-test";
     }
 
 }

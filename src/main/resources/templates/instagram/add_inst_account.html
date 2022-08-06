@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<html style="font-size: 16px;" lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>добавление инстаграм</title>
+    <link rel="stylesheet" th:href="@{/css/nicepage/nicepage.css}" media="screen">
+    <link rel="stylesheet" th:href="@{/css/inst/add_inst_account.css}" media="screen">
+    <script class="u-script" type="text/javascript" th:src="@{/js/jquery.js}" defer=""></script>
+    <script class="u-script" type="text/javascript" th:src="@{/js/nicepage/nicepage.js}" defer=""></script>
+    <meta name="generator" content="Nicepage 4.14.1, nicepage.com">
+
+    <link id="u-theme-google-font" rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+
+
+    <script type="application/ld+json">{
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "name": "Site1",
+        "logo": "images/testc2.svg",
+        "sameAs": [
+            "https://facebook.com/name",
+            "https://twitter.com/name",
+            "https://instagram.com/name"
+        ]
+    }</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="добавление инстаграм">
+    <meta name="twitter:description" content="Site1">
+    <meta property="og:title" content="добавление инстаграм">
+    <meta property="og:type" content="website">
+</head>
+<body class="u-body u-xl-mode" data-lang="ru">
+<header th:insert="~{home/home-test.html :: header}">
+</header>
+<section class="u-clearfix u-image u-section-1" id="sec-6b08" data-image-width="1920" data-image-height="1080">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-border-2 u-border-grey-75 u-container-style u-gradient u-group u-radius-30 u-shape-round u-group-1">
+            <div class="u-container-layout u-container-layout-1">
+                <h3 class="u-custom-font u-font-courier-new u-text u-text-default u-text-1">Добавить аккаунт
+                    Инстаграм</h3>
+                <div class="u-border-2 u-border-black u-expanded-width u-line u-line-horizontal u-line-1"></div>
+                <h3 class="u-custom-font u-font-courier-new u-text u-text-default u-text-2">Верификация</h3>
+                <p class="u-custom-font u-font-courier-new u-text u-text-default u-text-3">Разместите код в поле "О
+                    себе", для подтверждения прав владельца</p>
+                <h6 th:text="${code}" class="u-custom-font u-font-courier-new u-text u-text-default u-text-4"></h6>
+                <div class="u-border-3 u-border-black u-expanded-width u-line u-line-horizontal u-line-2"></div>
+                <div class="u-form u-form-1">
+                    <form th:action="@{/inst/sell_account}" th:object="${account}" method="POST"
+                          class="u-clearfix u-form-custom-backend u-form-spacing-6 u-form-vertical u-inner-form"
+                          source="custom" name="form" style="padding: 14px;" redirect="true">
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-1">
+                            <span th:if="${#fields.hasErrors('url')}" th:errors="*{url}"></span>
+                            <label for="text-95b5" class="u-custom-font u-font-courier-new u-label">Ссылка</label>
+                            <input th:field="*{url}" type="text" placeholder="" id="text-95b5" name="url"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-partition-factor-2 u-form-group-2">
+                            <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></span>
+                            <label for="text-f5c7" class="u-custom-font u-font-courier-new u-label">цена</label>
+                            <input th:field="*{price}" type="text" placeholder="" id="text-f5c7" name="price"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-group-3">
+
+                            <span th:if="${#fields.hasErrors('header')}" th:errors="*{header}"></span>
+                            <label for="text-1193" class="u-custom-font u-font-courier-new u-label">краткое
+                                описание</label>
+                            <input th:field="*{header}" type="text" placeholder="" id="text-1193" name="header"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-select u-form-group-4">
+
+                            <span th:if="${#fields.hasErrors('mediaType')}" th:errors="*{mediaType}"></span>
+                            <label for="select-a241" class="u-custom-font u-font-courier-new u-label">Тематика</label>
+                            <div class="u-form-select-wrapper">
+                                <select th:field="*{mediaType}" id="select-a241" name="mediaType"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                                    <option th:value="type">все</option>
+                                    <option th:value="cars">автомобили</option>
+                                    <option th:value="business">бизнес</option>
+                                    <option th:value="fashion">мода</option>
+                                    <option th:value="music">музыка</option>
+                                    <option th:value="games">игры</option>
+                                    <option th:value="animals">животные</option>
+                                    <option th:value="humor">юмор</option>
+                                    <option th:value="furniture">мебли</option>
+                                    <option th:value="sales">продажа</option>
+                                    <option th:value="films">кино</option>
+                                    <option th:value="culture">культура</option>
+                                    <option th:value="real_estate">недвижимость</option>
+                                    <option th:value="food">Food</option>
+                                    <option th:value="work">робота</option>
+                                    <option th:value="news">сми</option>
+                                    <option th:value="sport">спорт</option>
+                                    <option th:value="finances">финансы</option>
+                                    <option th:value="ero">еротика</option>
+                                    <option th:value="facts">факты</option>
+                                </select>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                     class="u-caret">
+                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="u-form-group u-form-textarea u-form-group-5">
+                            <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}"></span>
+                            <label for="textarea-8a53" class="u-custom-font u-font-courier-new u-label">полное
+                                описание</label>
+                            <textarea th:field="*{text}" rows="4" cols="50" id="textarea-8a53" name="text"
+                                      class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white"
+                                      required=""></textarea>
+                        </div>
+                        <div class="u-form-group u-form-group-6">
+                            <span th:if="${#fields.hasErrors('income')}" th:errors="*{income}"></span>
+                            <label for="text-fcf8" class="u-custom-font u-font-courier-new u-label">доход</label>
+                            <input th:field="*{income}" type="text" placeholder="" id="text-fcf8" name="income"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-group-7">
+                            <span th:if="${#fields.hasErrors('expenses')}" th:errors="*{expenses}"></span>
+                            <label for="text-a2bf" class="u-custom-font u-font-courier-new u-label">расход</label>
+                            <input  th:field="*{expenses}" type="text" placeholder="" id="text-a2bf" name="expenses"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-select u-form-group-8">
+                            <span th:if="${#fields.hasErrors('withEmail')}" th:errors="*{withEmail}"></span>
+                            <label for="select-45cf" class="u-custom-font u-font-courier-new u-label">отдаёте ли вы
+                                аккаунт с родной почтой?</label>
+                            <div class="u-form-select-wrapper">
+                                <select  th:field="*{withEmail}" id="select-45cf" name="withEmail"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                                    <option th:value="yes">Да</option>
+                                    <option th:value="no">Нет</option>
+                                </select>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                     class="u-caret">
+                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="u-form-group u-form-group-9">
+                            <span th:if="${#fields.hasErrors('email_password')}" th:errors="*{email_password}"></span>
+                            <label for="text-77ae" class="u-custom-font u-font-courier-new u-label">Данные для входа в
+                                аккаунт</label>
+                            <input th:field="*{email_password}" type="text" placeholder="email:password" id="text-77ae" name="email_password"
+                                   class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                        </div>
+                        <div class="u-form-group u-form-select u-form-group-10">
+                            <label for="select-1a64" class="u-custom-font u-font-courier-new u-label">Закрепить
+                                объявление</label>
+                            <div class="u-form-select-wrapper">
+                                <select th:field="*{pinAccount}" id="select-1a64" name="pinAccount"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+
+                                    <option selected th:value="No">No</option>
+                                    <option th:value="1">1 неделя</option>
+                                    <option th:value="2">2 недели</option>
+                                    <option th:value="3">3 недели</option>
+                                    <option th:value="4">4 недели</option>
+                                </select>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                     class="u-caret">
+                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="u-form-group u-form-select u-form-group-11">
+                            <label for="select-151e" class="u-custom-font u-font-courier-new u-label">Выделить
+                                цветом</label>
+                            <div class="u-form-select-wrapper">
+                                <select th:field="*{colored}" id="select-151e" name="colored"
+                                        class="u-border-1 u-border-grey-30 u-custom-font u-font-courier-new u-input u-input-rectangle u-radius-20 u-white">
+                                    <option selected th:value="No">No</option>
+                                    <option th:value="1">1 неделя</option>
+                                    <option th:value="2">2 недели</option>
+                                    <option th:value="3">3 недели</option>
+                                    <option th:value="4">4 недели</option>
+                                </select>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1"
+                                     class="u-caret">
+                                    <path fill="currentColor" d="M4 8L0 4h8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="u-align-right u-form-group u-form-submit">
+                            <a href="#"
+                               class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-font u-font-courier-new u-radius-21 u-btn-1">Запустить
+                                продажу<br>
+                            </a>
+                            <input type="submit" value="submit" class="u-form-control-hidden">
+                        </div>
+                    </form>
+                </div>
+                <div class="u-border-2 u-border-black u-expanded-width u-line u-line-horizontal u-line-3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer  th:insert="~{home/home-test.html :: footer}">
+
+</footer>
+<section class="u-backlink u-clearfix u-grey-80">
+    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Website Templates</span>
+    </a>
+    <p class="u-text">
+        <span>created with</span>
+    </p>
+    <a class="u-link" href="https://nicepage.com/html-website-builder" target="_blank">
+        <span>HTML Creator</span>
+    </a>.
+</section>
+
+</body>
+</html>

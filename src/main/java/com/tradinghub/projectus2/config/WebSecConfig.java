@@ -39,8 +39,10 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
                .antMatchers("/inst").permitAll()
                .antMatchers( "/js/", "/css/")
                .permitAll()
-               .antMatchers("/profile").authenticated()
-               .and().formLogin().usernameParameter("username")
+               .antMatchers("/profile",
+                       "/inst/sell_account").authenticated()
+               .and().formLogin()
+               .loginPage("/login")
                .defaultSuccessUrl("/profile").permitAll()
                .and().logout().permitAll();
     }

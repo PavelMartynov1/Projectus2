@@ -1,0 +1,19 @@
+ .u-section-1 {
+  background-image: url("505.png");
+  background-position: 50% 50%;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 938px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-1 .u-sheet-1 {
+    min-height: 500px;
+  }
+}@font-face {
+  font-family: 'pobeda-bold1';
+  font-style: normal;
+  font-weight: 400;
+  src: url(fonts/pobeda-bold1.ttf);
+}
