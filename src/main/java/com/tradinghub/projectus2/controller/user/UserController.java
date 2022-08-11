@@ -5,10 +5,10 @@ import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.account.Account;
 
 import com.tradinghub.projectus2.model.dto.user.UserDTO;
+import com.tradinghub.projectus2.model.dto.userInfo.UserInfoDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.service.AccountService;
-import com.tradinghub.projectus2.service.UserInfoService;
 import com.tradinghub.projectus2.service.UserService;
 import com.tradinghub.projectus2.utils.pageHelper.ProfilePageHelper;
 import com.tradinghub.projectus2.utils.sort.profileSort.ProfileSortParams;
@@ -24,7 +24,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
@@ -36,8 +35,6 @@ public class UserController {
     Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService userService;
-    @Autowired
-    private UserInfoService userInfoService;
     @Autowired
     AccountService accountService;
     @Autowired
@@ -136,6 +133,7 @@ user code verify
         model.addAttribute("current_page",page.getNumber()+1);
         model.addAttribute("totalPages",page.getTotalPages());
         model.addAttribute("pageSize",pageSize);
+        model.addAttribute("userInfo",new UserInfoDTO());
         return "user/profile.html";
     }
 /*
@@ -163,23 +161,13 @@ change user password
         userService.changeUserEmail(principal.getName(), newEmail);
         return "redirect:/login";
     }
-    @GetMapping("/profile/user_info")
-    public ModelAndView getProfileInfo(ModelAndView modelAndView) {
-        modelAndView.addObject("userInfo",
-                new UserInfo());
-        modelAndView.setViewName("user/user_info_form");
-        return modelAndView;
-    }
-
     @RequestMapping(value = "/profile/user_info", method = RequestMethod.POST)
     public String setProfileInfo(@ModelAttribute("userInfo")
-                                 @Valid UserInfo userInfo,
+                                 @Valid UserInfoDTO userInfo,
                                  Principal principal) {
         User user = userService.findUserByUsername(principal.getName());
-        userInfo.setUser(user);
-        user.setUserInfo(userInfo);
-        userService.setUserInfo(user);
-        userInfoService.saveUserInfo(userInfo);
+        user.setUserInfo(userInfo.build(user.getUserInfo()));
+        userService.saveUserInfo(user);
         return "redirect:/profile";
     }
 

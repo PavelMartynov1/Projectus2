@@ -2,6 +2,7 @@ package com.tradinghub.projectus2.model.user;
 
 import com.tradinghub.projectus2.model.Permission;
 import com.tradinghub.projectus2.model.Role;
+import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "user")
 public class User  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +55,24 @@ public class User  {
     @OneToOne(cascade = javax.persistence.CascadeType.ALL)
     @JoinColumn(name = "userDetails_id")
     private CustomUserDetails userDetails;
+    @OneToMany(mappedBy = "user")
+    private Set<Account> accounts;
+
+    public CustomUserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(CustomUserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
 
     public String getUsername() {
         return username;

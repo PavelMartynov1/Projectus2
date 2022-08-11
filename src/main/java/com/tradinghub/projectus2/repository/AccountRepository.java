@@ -1,6 +1,7 @@
 package com.tradinghub.projectus2.repository;
 
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.account.AccountInfo;
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.model.enums.AccountStatus;
 import com.tradinghub.projectus2.model.enums.MediaType;
@@ -10,15 +11,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface AccountRepository extends JpaRepository<Account, Long> {
+    @Transactional
     @Modifying
-    @Query("update Account a set a.accountInfo.lookUps = a.accountInfo.lookUps + 1 where a.id =:id")
-    void increaseLookUps(@Param("id") Long id);
+    @Query("update Account a set a.accountInfo =:accountInfo where a.id =:id")
+    void increaseLookUps(@Param("accountInfo") AccountInfo accountInfo,@Param("id") Long id);
 
-    @Query("select a from Account a where a.userInfo.user.id =:id")
+    @Query("select a from Account a where a.user.id =:id")
     Page<Account> findAccountsByUserId(@Param("id") Long id, Pageable page);
-    @Query("select a from Account a where a.userInfo.user.id =:id and a.accountInfo.accountStatus =:status")
+    @Query("select a from Account a where a.user.id =:id and a.accountInfo.accountStatus =:status")
     Page<Account> findAccountsByIdAndStatusAndLookUpsOrder(@Param("id") Long id,
                                                            @Param("status") AccountStatus status, Pageable page);
 

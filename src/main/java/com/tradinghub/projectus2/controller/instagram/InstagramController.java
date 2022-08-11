@@ -5,6 +5,7 @@ import com.restfb.FacebookClient;
 import com.restfb.Parameter;
 import com.restfb.Version;
 import com.restfb.types.instagram.IgUser;
+import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.dto.account.InstagramDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.service.AccountService;
@@ -16,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class InstagramController {
@@ -39,7 +42,15 @@ public class InstagramController {
 
     Logger logger = LoggerFactory.getLogger(InstagramController.class);
 
-
+    @RequestMapping(value="/inst/item",method = RequestMethod.GET)
+    public String getInstAccountInfoPage(@RequestParam(name="id",required = true) Long id,Model model,Principal principal){
+        Optional<Account> account=accountService.findById(id,principal);
+        if(account.isPresent()){
+            model.addAttribute("account",account.get());
+            return "instagram/item.html";
+        }
+        return "redirect:/";
+    }
     @RequestMapping(value = "/inst/sell_account", method = RequestMethod.GET)
     public ModelAndView sellAccountPage(ModelAndView model,HttpSession session) {
         String code=RandomString.make(8);

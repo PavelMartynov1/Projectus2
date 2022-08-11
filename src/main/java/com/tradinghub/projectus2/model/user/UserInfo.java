@@ -25,9 +25,6 @@ public class UserInfo {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "userInfo")
-    private Set<Account> accounts;
-
     @Lob
     @Basic(fetch=FetchType.LAZY)
     private byte[] profilepic;
@@ -44,14 +41,6 @@ public class UserInfo {
 
     public void setProfilepic(byte[] profilepic) {
         this.profilepic = profilepic;
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
     }
 
     public String getNumber() {

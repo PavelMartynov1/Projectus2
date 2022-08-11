@@ -42,7 +42,7 @@ public class InstagramDTO {
         account.getAccountInfo().setText(text);
         account.getAccountInfo().setHeader(header);
         account.getAccountInfo().setType(MediaType.valueOf(mediaType));
-        account.setUserInfo(user.getUserInfo());
+        account.setUser(user);
         account.getAccountInfo().setActivationCode("code");
         account.getAccountInfo().setFollowers(1233);
         account.getAccountInfo().setAccountStatus(AccountStatus.ON_SALE);

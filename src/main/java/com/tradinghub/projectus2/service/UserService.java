@@ -53,10 +53,12 @@ public class UserService {
         return paging;
     }
     public Set<Account> getUserAccounts(String username){
-        return userRepo.findByUsername(username).getUserInfo().getAccounts();
+        return userRepo.findByUsername(username).getAccounts();
 
     }
-
+    public void saveUserInfo(User user){
+    userRepo.updateUserInfo(user.getUserInfo(),user.getId());
+    }
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }

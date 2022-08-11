@@ -1,6 +1,7 @@
 package com.tradinghub.projectus2.service;
 
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.account.AccountInfo;
 import com.tradinghub.projectus2.model.enums.AccountStatus;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.repository.AccountRepository;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,10 +44,7 @@ public class AccountService {
         return paging;
     }
     private boolean isOwner(Account account,String username){
-        if(username==null){
-            return false;
-        }
-        User user=account.getUserInfo().getUser();
+        User user=account.getUser();
         return user.getUsername().equals(username);
 
     }
@@ -55,14 +54,25 @@ public class AccountService {
     public void saveAccount(Account account){
         accountRepository.save(account);
     }
-    public Optional<Account> findById(String id,String username){
-        Optional<Account> account=accountRepository.findById(Long.valueOf(id));
+
+    public Optional<Account> findById(Long id, Principal principal){
+        Optional<Account> account=accountRepository.findById(id);
         if(account.isPresent()) {
-            if (!isOwner(account.get(), username)) {
+            if(principal==null)
+            {
+                increaseLookups(account.get());
+                return account;
+            }
+            if (!isOwner(account.get(), principal.getName())) {
                 increaseLookups(account.get());
             }
         }
         return account;
+    }
+    private void increaseLookups(Account account){
+        AccountInfo accountInfo=account.getAccountInfo();
+        accountInfo.setLookUps(accountInfo.getLookUps()+1);
+        accountRepository.increaseLookUps(accountInfo,account.getId());
     }
     public Page<Account> getUserAccountsByStatusAndLookUpsOrder(ProfileSortParams sortParams, Optional<Sort> sortOrder){
         Pageable paging=getPage(sortParams,sortOrder);
@@ -75,9 +85,7 @@ public class AccountService {
         return accountRepository.findAccountsByUserId(sortParams.getUserId(),paging);
 
     }
-    private void increaseLookups(Account account){
-        accountRepository.increaseLookUps(account.getId());
-    }
+
     public Page<Account> findPaginatedByCategoryAndMediaTypeAndPriceAndFollowersWithOrder(HomeSortParams homeSortParams, Optional<Sort> sortOrder){
 
         Pageable paging = getPage(homeSortParams, sortOrder);getPage(homeSortParams, sortOrder);

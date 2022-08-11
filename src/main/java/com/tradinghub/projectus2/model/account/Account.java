@@ -32,8 +32,16 @@ public class Account {
     @Column(name="colored",nullable=true)
     private Boolean colored;
     @ManyToOne
-    @JoinColumn(name="userInfo_id")
-    private UserInfo userInfo;
+    @JoinColumn(name="user_id")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Boolean getWithEmail() {
         return withEmail;
@@ -57,14 +65,6 @@ public class Account {
 
     public void setColored(Boolean colored) {
         this.colored = colored;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
     }
 
     public Long getId() {
