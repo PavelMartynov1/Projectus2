@@ -130,5 +130,5 @@
   font-family: 'pobeda-bold1';
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/pobeda-bold1.ttf);
+  src: url(/static/css/fonts/pobeda-bold1.ttf);
 }

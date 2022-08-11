@@ -1,9 +1,12 @@
 package com.tradinghub.projectus2.service;
 
 import com.tradinghub.projectus2.model.account.Account;
-import com.tradinghub.projectus2.model.enums.AccountCategory;
+import com.tradinghub.projectus2.model.enums.AccountStatus;
+import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.repository.AccountRepository;
-import com.tradinghub.projectus2.utils.SortParams;
+import com.tradinghub.projectus2.utils.sort.SortParams;
+import com.tradinghub.projectus2.utils.sort.homeSort.HomeSortParams;
+import com.tradinghub.projectus2.utils.sort.profileSort.ProfileSortParams;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,19 +26,28 @@ public class AccountService {
     Logger logger = LoggerFactory.getLogger(AccountService.class);
     @Autowired
     AccountRepository accountRepository;
+    @Autowired
+    UserService userService;
 
     public AccountService() {
     }
-    private Pageable getPage(SortParams sortParams, Optional<Sort> sortOrder) {
-        logger.warn(sortParams.toString());
+    private Pageable getPage(SortParams homeSortParams, Optional<Sort> sortOrder) {
+        logger.warn(homeSortParams.toString());
         Pageable paging;
         if(sortOrder.isPresent()) {
-
-            paging = PageRequest.of(sortParams.getPageNo() - 1, sortParams.getPageSize(), sortOrder.get());
+            paging = PageRequest.of(homeSortParams.getPageNo() - 1, homeSortParams.getPageSize(), sortOrder.get());
         } else{
-            paging = PageRequest.of(sortParams.getPageNo() - 1, sortParams.getPageSize());
+            paging = PageRequest.of(homeSortParams.getPageNo() - 1, homeSortParams.getPageSize());
         }
         return paging;
+    }
+    private boolean isOwner(Account account,String username){
+        if(username==null){
+            return false;
+        }
+        User user=account.getUserInfo().getUser();
+        return user.getUsername().equals(username);
+
     }
     public List<Account> findAll(){
         return accountRepository.findAll();
@@ -43,77 +55,68 @@ public class AccountService {
     public void saveAccount(Account account){
         accountRepository.save(account);
     }
-    public Optional<Account> findById(String id){
-        return accountRepository.findById(Long.valueOf(id));
+    public Optional<Account> findById(String id,String username){
+        Optional<Account> account=accountRepository.findById(Long.valueOf(id));
+        if(account.isPresent()) {
+            if (!isOwner(account.get(), username)) {
+                increaseLookups(account.get());
+            }
+        }
+        return account;
+    }
+    public Page<Account> getUserAccountsByStatusAndLookUpsOrder(ProfileSortParams sortParams, Optional<Sort> sortOrder){
+        Pageable paging=getPage(sortParams,sortOrder);
+        return accountRepository.findAccountsByIdAndStatusAndLookUpsOrder(sortParams.getUserId(),AccountStatus.valueOf(sortParams.getAccountStatus()),
+                paging);
 
     }
+    public Page<Account> getUserAccountsByLookUpsOrder(ProfileSortParams sortParams, Optional<Sort> sortOrder){
+        Pageable paging=getPage(sortParams,sortOrder);
+        return accountRepository.findAccountsByUserId(sortParams.getUserId(),paging);
 
-    public Page<Account> findPaginatedByCategoryAndMediaTypeAndPriceAndFollowersWithOrder(SortParams sortParams,Optional<Sort> sortOrder){
+    }
+    private void increaseLookups(Account account){
+        accountRepository.increaseLookUps(account.getId());
+    }
+    public Page<Account> findPaginatedByCategoryAndMediaTypeAndPriceAndFollowersWithOrder(HomeSortParams homeSortParams, Optional<Sort> sortOrder){
 
-        Pageable paging = getPage(sortParams, sortOrder);getPage(sortParams, sortOrder);
-        return accountRepository.findAccountByCategoryAndMediaTypeAndPriceAndFollowersWithSort(sortParams.getCategory(),
-                sortParams.getMediaType(),sortParams.getPriceFrom(),sortParams.getPriceUp(),sortParams.getFollowersFrom(),sortParams.getFollowersUp(),paging);
+        Pageable paging = getPage(homeSortParams, sortOrder);getPage(homeSortParams, sortOrder);
+        return accountRepository.findAccountByCategoryAndMediaTypeAndPriceAndFollowersWithSort(homeSortParams.getCategory(),
+                homeSortParams.getMediaType(), homeSortParams.getPriceFrom(), homeSortParams.getPriceUp(), homeSortParams.getFollowersFrom(), homeSortParams.getFollowersUp(),paging);
     }
 
 
-    public Page<Account> findPaginatedByCategoryAndPriceAndFollowersWithOrder(SortParams sortParams,Optional<Sort> sortOrder){
-        Pageable paging = getPage(sortParams, sortOrder);
+    public Page<Account> findPaginatedByCategoryAndPriceAndFollowersWithOrder(HomeSortParams homeSortParams, Optional<Sort> sortOrder){
+        Pageable paging = getPage(homeSortParams, sortOrder);
         return accountRepository
-                .findAccountByCategoryAndPriceAndFollowersWithSort(sortParams.getCategory(),
-                sortParams.getPriceFrom(),sortParams.getPriceUp(),sortParams.getFollowersFrom(),sortParams.getFollowersUp(),paging);
+                .findAccountByCategoryAndPriceAndFollowersWithSort(homeSortParams.getCategory(),
+                homeSortParams.getPriceFrom(), homeSortParams.getPriceUp(), homeSortParams.getFollowersFrom(), homeSortParams.getFollowersUp(),paging);
     }
 
 
 
-    public Page<Account> findPaginatedByMediaTypeAndPriceAndFollowersWithOrder(SortParams sortParams,Optional<Sort> sortOrder){
-        Pageable paging = getPage(sortParams, sortOrder);
+    public Page<Account> findPaginatedByMediaTypeAndPriceAndFollowersWithOrder(HomeSortParams homeSortParams, Optional<Sort> sortOrder){
+        Pageable paging = getPage(homeSortParams, sortOrder);
         return accountRepository
-                .findAccountByMediaTypeAndPriceAndFollowersWithSort(sortParams.getMediaType(),
-                        sortParams.getPriceFrom(),sortParams.getPriceUp(),sortParams.getFollowersFrom(),sortParams.getFollowersUp(),paging);
+                .findAccountByMediaTypeAndPriceAndFollowersWithSort(homeSortParams.getMediaType(),
+                        homeSortParams.getPriceFrom(), homeSortParams.getPriceUp(), homeSortParams.getFollowersFrom(), homeSortParams.getFollowersUp(),paging);
     }
 
-    public Page<Account> findAllAccountsByPriceAndFollowersWithOrder(SortParams sortParams,Optional<Sort> sortOrder){
-        Pageable paging = getPage(sortParams, sortOrder);
-        logger.info("meidaType "+(sortParams.getMediaType()));
+    public Page<Account> findAllAccountsByPriceAndFollowersWithOrder(HomeSortParams homeSortParams, Optional<Sort> sortOrder){
+        Pageable paging = getPage(homeSortParams, sortOrder);
+        logger.info("meidaType "+(homeSortParams.getMediaType()));
         return accountRepository
-                .findAllAccountsByPriceAndFollowersWithSort(sortParams.getPriceFrom(),sortParams.getPriceUp(),
-                        sortParams.getFollowersFrom(),sortParams.getFollowersUp(),paging);
+                .findAllAccountsByPriceAndFollowersWithSort(homeSortParams.getPriceFrom(), homeSortParams.getPriceUp(),
+                        homeSortParams.getFollowersFrom(), homeSortParams.getFollowersUp(),paging);
+    }
+
+    public Page<Account> findAccountsByUserId(Long id, SortParams sortParams,Optional <Sort> sortOrder){
+        Pageable paging = getPage(sortParams, sortOrder);
+        return accountRepository.findAccountsByUserId(id,paging);
     }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-    public Page<Account> findPaginatedByCategory(AccountCategory category, int pageNo, int pageSize){
-        Pageable paging= PageRequest.of(pageNo,pageSize);
-        Page<Account> pagedResult=accountRepository.findAccountByCategory(category,paging);
-        return pagedResult;
-    }
-    public Page<Account> findPaginatedByCategoryWithSort(AccountCategory category,int pageNo, int pageSize,Sort sort){
-        Pageable paging= PageRequest.of(pageNo,pageSize,sort);
-        Page<Account> pagedResult=accountRepository.findAccountByCategoryWithSort(category,paging);
-        return pagedResult;
-    }
-
-    public Page<Account> findPaginated(int pageNo, int pageSize){
-        Pageable paging= PageRequest.of(pageNo,pageSize);
-        Page<Account> pagedResult=accountRepository.findAll(paging);
-        return pagedResult;
-    }
-    public Page<Account> findPaginatedWithSort(int pageNo, int pageSize, Sort sort){
-        Pageable paging= PageRequest.of(pageNo,pageSize,sort);
-        Page<Account> pagedResult=accountRepository.findAll(paging);
-        return pagedResult;
-    }
     public Account verifyAccount(Account account,String code){
 //        String parameters="business_discovery.username("
 //                +account.getUsername()

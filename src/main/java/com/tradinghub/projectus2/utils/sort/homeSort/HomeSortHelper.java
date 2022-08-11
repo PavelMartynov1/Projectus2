@@ -1,4 +1,4 @@
-package com.tradinghub.projectus2.utils;
+package com.tradinghub.projectus2.utils.sort.homeSort;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class SortHelper {
-    public SortHelper() {
+public class HomeSortHelper {
+    public HomeSortHelper() {
     }
 
-    Logger logger = LoggerFactory.getLogger(SortHelper.class);
+    Logger logger = LoggerFactory.getLogger(HomeSortHelper.class);
     private Sort sortByGroup;
 
     public Optional<Sort> getSort(String price, String followersCount) {

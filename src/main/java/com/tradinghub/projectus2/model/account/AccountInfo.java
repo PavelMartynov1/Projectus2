@@ -1,8 +1,8 @@
 package com.tradinghub.projectus2.model.account;
 
+import com.tradinghub.projectus2.model.enums.AccountStatus;
 import com.tradinghub.projectus2.model.enums.Currency;
 import com.tradinghub.projectus2.model.enums.MediaType;
-import com.tradinghub.projectus2.model.user.UserInfo;
 
 import javax.persistence.*;
 
@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class AccountInfo {
     public AccountInfo() {
     }
-
     public AccountInfo(Account account) {
         this.account = account;
     }
@@ -35,7 +34,9 @@ public class AccountInfo {
     private Integer price;
     @Column(name="expenses",nullable=true)
     private Integer expenses;
-
+    @Enumerated(EnumType.STRING)
+    private AccountStatus accountStatus;
+    private Integer lookUps;
     @Enumerated(EnumType.STRING)
     private Currency currency;
     @Enumerated(EnumType.STRING)
@@ -45,6 +46,22 @@ public class AccountInfo {
 
     public Integer getExpenses() {
         return expenses;
+    }
+
+    public AccountStatus getAccountStatus() {
+        return accountStatus;
+    }
+
+    public void setAccountStatus(AccountStatus accountStatus) {
+        this.accountStatus = accountStatus;
+    }
+
+    public Integer getLookUps() {
+        return lookUps;
+    }
+
+    public void setLookUps(Integer lookUps) {
+        this.lookUps = lookUps;
     }
 
     public void setExpenses(Integer expenses) {

@@ -2,6 +2,7 @@ package com.tradinghub.projectus2.model.dto.account;
 
 import com.tradinghub.projectus2.model.account.Account;
 import com.tradinghub.projectus2.model.enums.AccountCategory;
+import com.tradinghub.projectus2.model.enums.AccountStatus;
 import com.tradinghub.projectus2.model.enums.MediaType;
 import com.tradinghub.projectus2.model.user.User;
 import org.hibernate.validator.constraints.Range;
@@ -44,12 +45,13 @@ public class InstagramDTO {
         account.setUserInfo(user.getUserInfo());
         account.getAccountInfo().setActivationCode("code");
         account.getAccountInfo().setFollowers(1233);
+        account.getAccountInfo().setAccountStatus(AccountStatus.ON_SALE);
+        account.getAccountInfo().setLookUps(0);
         account.setCategory(AccountCategory.inst);
-
         account.setPin(!pinAccount.equals("No"));
         account.setColored(!colored.equals("No"));
         account.setWithEmail(withEmail.equals("yes"));
-        String [] emailAndPassword =new String [2];
+        String [] emailAndPassword;
         emailAndPassword=email_password.split(":");
         account.setEmail(emailAndPassword[0]);
         account.setPassword(emailAndPassword[1]);

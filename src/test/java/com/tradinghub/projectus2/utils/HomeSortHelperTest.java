@@ -1,22 +1,20 @@
 package com.tradinghub.projectus2.utils;
 
+import com.tradinghub.projectus2.utils.sort.homeSort.HomeSortHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SortHelperTest {
-    SortHelper helper;
+class HomeSortHelperTest {
+    HomeSortHelper helper;
     @BeforeEach
     void sortHelper(){
-        helper=new SortHelper();
+        helper=new HomeSortHelper();
     }
     @DisplayName("All null params test successful")
     @Test

@@ -1,10 +1,11 @@
-package com.tradinghub.projectus2.utils;
+package com.tradinghub.projectus2.utils.sort.homeSort;
 
 import com.tradinghub.projectus2.model.enums.AccountCategory;
 import com.tradinghub.projectus2.model.enums.MediaType;
+import com.tradinghub.projectus2.utils.sort.SortParams;
 
 
-public class SortParams {
+public class HomeSortParams implements SortParams {
     private Integer pageNo;
     private Integer pageSize;
     private String priceOrder;
@@ -15,6 +16,7 @@ public class SortParams {
     private Integer followersUp;
     private String category;
     private String mediaType;
+
 
     public void setPageNo(Integer pageNo) {
         this.pageNo = pageNo;
@@ -87,84 +89,84 @@ public class SortParams {
 
 
     public static Builder newBuilder(){
-        return new SortParams().new Builder();
+        return new HomeSortParams().new Builder();
     }
     public class Builder {
         private Builder(){
         }
         public Builder setPriceOrder(String priceOrder){
-            SortParams.this.priceOrder=priceOrder;
+            HomeSortParams.this.priceOrder=priceOrder;
             return this;
         }
         public Builder setFollowersOrder(String followersOrder){
-            SortParams.this.followersOrder=followersOrder;
+            HomeSortParams.this.followersOrder=followersOrder;
             return this;
         }
         public Builder setPriceFrom(Integer priceFrom){
             if(priceFrom==null){
-                SortParams.this.priceFrom=0;
+                HomeSortParams.this.priceFrom=0;
                 return this;
             }
-            SortParams.this.priceFrom=priceFrom;
+            HomeSortParams.this.priceFrom=priceFrom;
             return this;
         }
         public Builder setFollowersFrom(Integer followersFrom){
             if(followersFrom==null){
-                SortParams.this.followersFrom=0;
+                HomeSortParams.this.followersFrom=0;
                 return this;
             }
-            SortParams.this.followersFrom=followersFrom;
+            HomeSortParams.this.followersFrom=followersFrom;
             return this;
         }
         public Builder setPriceUp(Integer priceUp){
             if(priceUp==null){
-                SortParams.this.priceUp=999999999;
+                HomeSortParams.this.priceUp=999999999;
                 return this;
             }
-            SortParams.this.priceUp=priceUp;
+            HomeSortParams.this.priceUp=priceUp;
             return this;
         }
         public Builder setFollowersUp(Integer followersUp){
             if(followersUp==null){
-                SortParams.this.followersUp=999999999;
+                HomeSortParams.this.followersUp=999999999;
                 return this;
             }
-            SortParams.this.followersUp=followersUp;
+            HomeSortParams.this.followersUp=followersUp;
             return this;
         }
         public Builder setCategory(String category){
             if(category==null || category.equals("all")){
-                SortParams.this.category=null;
+                HomeSortParams.this.category=null;
                 return this;
             }
-            SortParams.this.category=category;
+            HomeSortParams.this.category=category;
             return this;
         }
         public Builder setMediaType(String mediaType){
             if(mediaType==null || mediaType.equals("all")){
-                SortParams.this.mediaType=null;
+                HomeSortParams.this.mediaType=null;
                 return this;
             }
-            SortParams.this.mediaType=mediaType;
+            HomeSortParams.this.mediaType=mediaType;
             return this;
         }
         public Builder setPageNo(Integer pageNo){
-            SortParams.this.pageNo=pageNo;
+            HomeSortParams.this.pageNo=pageNo;
             return this;
         }
         public Builder setPageSize(Integer pageSize){
-            SortParams.this.pageSize=pageSize;
+            HomeSortParams.this.pageSize=pageSize;
             return this;
         }
-        public SortParams build() {
-            return SortParams.this;
+        public HomeSortParams build() {
+            return HomeSortParams.this;
         }
 
     }
 
     @Override
     public String toString() {
-        return "SortParams{" +
+        return "HomeSortParams{" +
                 "pageNo=" + pageNo +
                 ",\n pageSize=" + pageSize +
                 ", \npriceOrder='" + priceOrder + '\'' +

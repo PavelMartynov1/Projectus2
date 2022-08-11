@@ -19,13 +19,10 @@ public class UserInfo {
     private String number;
     @Column(name = "firstName")
     private String firstName;
-    @Column(name = "lastName")
-    private String lastName;
-    @Column(name = "vk", unique = true)
-    private String vk;
     @Column(name = "tg", unique = true)
     private String tg;
-    @OneToOne(mappedBy = "userInfo")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "userInfo")
@@ -71,22 +68,6 @@ public class UserInfo {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getVk() {
-        return vk;
-    }
-
-    public void setVk(String vk) {
-        this.vk = vk;
     }
 
     public String getTg() {

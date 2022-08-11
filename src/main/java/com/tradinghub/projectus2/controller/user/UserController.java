@@ -3,14 +3,17 @@ package com.tradinghub.projectus2.controller.user;
 import com.tradinghub.projectus2.errorExeptions.PasswordException;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.account.Account;
-import com.tradinghub.projectus2.model.dto.account.AccountDTO;
+
 import com.tradinghub.projectus2.model.dto.user.UserDTO;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.service.AccountService;
 import com.tradinghub.projectus2.service.UserInfoService;
 import com.tradinghub.projectus2.service.UserService;
+import com.tradinghub.projectus2.utils.pageHelper.ProfilePageHelper;
+import com.tradinghub.projectus2.utils.sort.profileSort.ProfileSortParams;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
@@ -35,6 +40,8 @@ public class UserController {
     private UserInfoService userInfoService;
     @Autowired
     AccountService accountService;
+    @Autowired
+    ProfilePageHelper helper;
 
     /*
      Serves user registration template
@@ -64,34 +71,16 @@ public class UserController {
         }
         return "redirect:/login";
     }
+    /*
+    Log in page
+     */
     @RequestMapping(value = "/login")
     public String getLoginPage(){
         return "user/login.html";
     }
-
     /*
-     Serves selling  page
+    load user picture
      */
-    @RequestMapping(value = "user/sell_item", method = RequestMethod.GET)
-    public String getSellItemPage(Model model) {
-        model.addAttribute("account", new AccountDTO());
-        return "user/sell_account.html";
-    }
-
-    /*
-     Saves account for sale
-     */
-    @RequestMapping(value = "user/sell_item", method = RequestMethod.POST)
-    public String add_item(@ModelAttribute("account") @Valid AccountDTO account,
-                           BindingResult bindingResult, Principal principal) {
-        if (bindingResult.hasErrors()) {
-            return "user/sell_account.html";
-        }
-        User user = userService.findUserByUsername(principal.getName());
-        accountService.saveAccount(account.build(user));
-        return "redirect:/profile";
-    }
-
     @PostMapping("user/image")
     public String setProfilePic(@RequestParam("image") MultipartFile image,
                                 Principal principal) {
@@ -103,38 +92,55 @@ public class UserController {
         return "redirect:/profile";
 
     }
-
+/*
+user code verify
+ */
     @GetMapping("/verify")
     public String verifyUser(@Param("code") String code) {
         if (userService.verify(code)) {
-            // logger.info("User verified");
             return "verify_success";
         } else {
-            // logger.info("verify_fail");
             return "verify_fail";
         }
     }
 
-    @GetMapping("/profile")
-    public String loginSuccess(Model model, Principal principal) {
+    /*
+    user cabinet page
+     */
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String profilePage(@RequestParam(defaultValue = "1", name = "pageNo") Integer pageNo,
+                              @RequestParam(defaultValue = "3", name = "pageSize") Integer pageSize,
+                              @RequestParam(required = false,name = "accountStatus") String accountStatus,
+                              @RequestParam(required = false,name = "lookUpsOrder") String lookUpsOrder,
+                              @RequestParam(required = false) Boolean drop,
+                              Model model, Principal principal,
+                              HttpSession session) {
         User user = userService.findUserByUsername(principal.getName());
         model.addAttribute("user", user);
-        model.addAttribute("userInfo",
-                new UserInfo());
         Set<Account> userAccounts = userService.getUserAccounts(principal.getName());
         model.addAttribute("accounts", userAccounts);
-
-        return "user/user-cabinet.html";
+        ProfileSortParams sortParams = ProfileSortParams.newBuilder()
+                .setPageNo(pageNo)
+                .setSize(pageSize)
+                .setAccountStatus(accountStatus)
+                .setUserId(user.getId())
+                .setLookUpsOrder(lookUpsOrder)
+                .build();
+        logger.warn(sortParams.toString());
+        Page<Account > page=helper.getPage(sortParams,session);
+        if(page==null){
+            logger.info("page is null");
+            return "redirect:/";
+        }
+        model.addAttribute("accounts",page.getContent());
+        model.addAttribute("current_page",page.getNumber()+1);
+        model.addAttribute("totalPages",page.getTotalPages());
+        model.addAttribute("pageSize",pageSize);
+        return "user/profile.html";
     }
-
-    @GetMapping("/profile/user_info")
-    public ModelAndView getProfileInfo(ModelAndView modelAndView) {
-        modelAndView.addObject("userInfo",
-                new UserInfo());
-        modelAndView.setViewName("user/user_info_form");
-        return modelAndView;
-    }
-
+/*
+change user password
+ */
     @RequestMapping(value = "/profile/change-password", method = RequestMethod.POST)
     public String changeUserPassword(@RequestParam String newPassword,
                                      @RequestParam String password,
@@ -144,16 +150,25 @@ public class UserController {
                     (principal.getName(), password, newPassword);
         } catch (PasswordException e) {
             model.addAttribute("password", e.getMessage());
-            // logger.info("passwordException");
         }
         return "redirect:/login";
     }
-
+    /*
+    change user email
+    need to implement email verify
+     */
     @RequestMapping(value = "/profile/change-email", method = RequestMethod.POST)
     public String changeUserEmail(@RequestParam String newEmail,
                                   Principal principal, Model model) {
         userService.changeUserEmail(principal.getName(), newEmail);
         return "redirect:/login";
+    }
+    @GetMapping("/profile/user_info")
+    public ModelAndView getProfileInfo(ModelAndView modelAndView) {
+        modelAndView.addObject("userInfo",
+                new UserInfo());
+        modelAndView.setViewName("user/user_info_form");
+        return modelAndView;
     }
 
     @RequestMapping(value = "/profile/user_info", method = RequestMethod.POST)

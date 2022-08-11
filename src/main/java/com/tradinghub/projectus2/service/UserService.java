@@ -3,15 +3,22 @@ package com.tradinghub.projectus2.service;
 import com.tradinghub.projectus2.errorExeptions.UserAlreadyExistException;
 import com.tradinghub.projectus2.model.Role;
 import com.tradinghub.projectus2.model.account.Account;
+import com.tradinghub.projectus2.model.enums.AccountStatus;
 import com.tradinghub.projectus2.model.user.CustomUserDetails;
 import com.tradinghub.projectus2.model.user.User;
 import com.tradinghub.projectus2.model.user.UserInfo;
 import com.tradinghub.projectus2.repository.UserRepository;
+import com.tradinghub.projectus2.utils.sort.SortParams;
+import com.tradinghub.projectus2.utils.sort.profileSort.ProfileSortParams;
 import net.bytebuddy.utility.RandomString;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -24,6 +31,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -35,10 +43,20 @@ public class UserService {
     UserRepository userRepo;
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    private Pageable getPage(SortParams homeSortParams, Optional<Sort> sortOrder) {
+        Pageable paging;
+        if(sortOrder.isPresent()) {
+            paging = PageRequest.of(homeSortParams.getPageNo() - 1, homeSortParams.getPageSize(), sortOrder.get());
+        } else{
+            paging = PageRequest.of(homeSortParams.getPageNo() - 1, homeSortParams.getPageSize());
+        }
+        return paging;
+    }
     public Set<Account> getUserAccounts(String username){
         return userRepo.findByUsername(username).getUserInfo().getAccounts();
 
     }
+
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
@@ -53,6 +71,7 @@ public class UserService {
         return true;
 
     }
+
     public void changeUserPassword(String username,String password,String newPassword){
             User user=userRepo.findByUsername(username);
             user.setPassword(bCryptPasswordEncoder.encode(newPassword));
